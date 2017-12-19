@@ -1,11 +1,10 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.request import urlopen
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Comment
 import re
 
 
 class HabraHandler(BaseHTTPRequestHandler):
-
     HABRA_DOMAIN = 'habrahabr.ru'
     TM_SYMBOL = "\u2122"
 
@@ -15,8 +14,9 @@ class HabraHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
         html = self.get_habra_page()
-        html = self.get_tm_page(html)
-        html = self.sub_anchors(html)
+        if 'woff' not in self.path:
+            html = self.get_tm_page(html)
+            html = self.sub_anchors(html)
         self.wfile.write(html)
 
     def get_habra_page(self):
@@ -58,7 +58,7 @@ class HabraHandler(BaseHTTPRequestHandler):
             except KeyError:
                 pass
 
-        tm_html = soup.prettify(soup.original_encoding)
+        tm_html = soup.prettify(soup.original_encoding, formatter=None)
         return tm_html
 
     @staticmethod
@@ -68,15 +68,15 @@ class HabraHandler(BaseHTTPRequestHandler):
         :param element:
         :return:
         """
-        if element.parent.name in ['style', 'script', '[document]', 'head', 'title'] or element == '\n':
+        if element.parent.name in ['style', 'script', '[document]', 'head', 'title'] or element == '\n' or \
+                isinstance(element, Comment):
             return False
-        elif re.match('<!--.*-->', str(element)):
-            return False
+
         return True
 
 
 HOST_NAME = '127.0.0.1'
-PORT_NUMBER = 8050
+PORT_NUMBER = 8070
 
 if __name__ == '__main__':
     httpd = HTTPServer((HOST_NAME, PORT_NUMBER), HabraHandler)
