@@ -6,6 +6,7 @@
 #                     '$status $body_bytes_sent "$http_referer" '
 #                     '"$http_user_agent" "$http_x_forwarded_for" "$http_X_REQUEST_ID" "$http_X_RB_USER" '
 #                     '$request_time';
+import argparse
 
 config = {
     "REPORT_SIZE": 1000,
@@ -14,9 +15,14 @@ config = {
 }
 
 
-def main():
+def main(config):
+
     pass
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description='Log analyzer')
+
+    parser.add_argument('--config', type=str, help='path to configuration file')
+    args = parser.parse_args()
+    main(config)
