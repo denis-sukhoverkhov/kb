@@ -61,6 +61,9 @@ def get_last_log_file(path_to_log_dir):
 def main(config: dict, args):
     loaded_config = load_config(args.config)
     merged_config = {**config, **loaded_config}
+    log_file = get_last_log_file(merged_config['LOG_DIR'])
+
+
 
     pass
 
