@@ -4,7 +4,7 @@ import shutil
 import unittest
 
 import os
-from log_analyzer.log_analyzer import load_config, get_last_log_file
+from log_analyzer.log_analyzer import load_config, get_last_log_file, render
 
 
 class TestLogAnalyzer(unittest.TestCase):
@@ -61,6 +61,21 @@ class TestLogAnalyzer(unittest.TestCase):
             f_out.write(json.dumps(config))
 
         return path_to_config_file
+
+    def _generate_table_json(self, count_rows=10):
+
+        table = []
+        for number_row in range(0, count_rows):
+            table.append({'url': '/api/v2/internal/html5/phantomjs/queue/?wait=1m',
+                          'count': 2767,
+                          'count_perc': 0.106,
+                          'time_avg': 62.995,
+                          'time_max': 9843.569,
+                          'time_med': 60.073,
+                          'time_perc': 9.043,
+                          'time_sum': 174306.352})
+
+        return json.dumps(table)
 
     def test_load_normal_config(self):
         path_to_config_file = self._generate_config_file()
@@ -127,7 +142,34 @@ class TestLogAnalyzer(unittest.TestCase):
 
         with self.assertRaises(SystemExit) as exc:
             get_last_log_file(self.path_to_temp)
-        self.assertIsInstance(exc.exception, SystemExit)
+
+    def test_render_if_template_does_not_exist(self):
+        table_json = self._generate_table_json()
+        report_name = 'test_report.html'
+        report_dir = os.path.join(self.path_to_temp, 'reports', )
+        with self.assertRaises(SystemExit) as exc:
+            render(table_json, report_name, report_dir, path_to_template='./some_wrong_path/report.html')
+
+    def test_render_if_table_json_is_empty(self):
+        table_json = ''
+        report_name = 'test_report.html'
+        report_dir = os.path.join(self.path_to_temp, 'reports', )
+        path_to_template = os.path.join(self.abs_path, 'log_analyzer', 'templates', 'report.html')
+        render(table_json, report_name, report_dir, path_to_template)
+        self.assertTrue(os.path.exists(os.path.join(report_dir, report_name)))
+
+    def test_render_if_report_dir_not_exist(self):
+        report_dir = os.path.join(self.path_to_temp, 'reports', )
+
+        self.assertFalse(os.path.exists(report_dir))
+
+        path_to_template = os.path.join(self.abs_path, 'log_analyzer', 'templates', 'report.html')
+        render(self._generate_table_json(1), 'test_report.html', report_dir, path_to_template)
+
+        self.assertTrue(os.path.exists(report_dir))
+
+    def test_render_if_all_is_normal(self):
+        pass
 
     def test_processing_not_exist_log(self):
         pass

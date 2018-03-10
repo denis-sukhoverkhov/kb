@@ -12,6 +12,7 @@ import json
 import os
 import re
 import sys
+from string import Template
 
 config = {
     "REPORT_SIZE": 1000,
@@ -51,27 +52,51 @@ def get_last_log_file(path_to_log_dir):
         match = re.match(pattern, f)
         date_group = match.group(1)
         if match:
-            files_dict[datetime.datetime.strptime(date_group, "%Y%m%d").date()] = os.path.join(path_to_log_dir, f)
+            try:
+                files_dict[datetime.datetime.strptime(date_group, "%Y%m%d").date()] = os.path.join(path_to_log_dir, f)
+            except ValueError as e:
+                sys.exit(f"Incorrect date format in name of file '{f}', it must be %Y%m%d")
+
     date_list = list(files_dict.keys())
     date_list.sort()
 
     return files_dict[date_list[-1]]
 
 
+def render(table_json: str, report_name: str, report_dir: str, path_to_template="./templates/report.html"):
+    try:
+        with open(path_to_template, "r") as f_out:
+            html_template = f_out.read()
+
+            if not os.path.exists(report_dir):
+                os.makedirs(report_dir)
+
+            path_to_report_file = os.path.join(report_dir, report_name)
+            try:
+                with open(path_to_report_file, "w") as f_in:
+                    f_in.write(Template(html_template).safe_substitute(table_json=table_json))
+            except FileNotFoundError as e:
+                sys.exit(f"Wrong path to report file: {path_to_report_file} ({e.strerror})")
+    except FileNotFoundError as e:
+        sys.exit(f"Wrong path to template: {path_to_template} ({e.strerror})")
+
+
 def main(config: dict, args):
     loaded_config = load_config(args.config)
     merged_config = {**config, **loaded_config}
-    log_file = get_last_log_file(merged_config['LOG_DIR'])
+    path_to_log_dir = os.path.abspath(merged_config['LOG_DIR'])
+    log_file = get_last_log_file(path_to_log_dir)
 
-
+    with open(log_file, "r") as f_out:
+        line = f_out.readline()
+        pass
 
     pass
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Log analyzer')
-
     parser.add_argument('--config', type=str, default='config.json', help='path to configuration file')
-    args = parser.parse_args('')
+    args = parser.parse_args()
 
     main(config, args)
