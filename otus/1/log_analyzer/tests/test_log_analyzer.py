@@ -151,11 +151,10 @@ class TestLogAnalyzer(unittest.TestCase):
             render(table_json, report_name, report_dir, path_to_template='./some_wrong_path/report.html')
 
     def test_render_if_table_json_is_empty(self):
-        table_json = ''
         report_name = 'test_report.html'
         report_dir = os.path.join(self.path_to_temp, 'reports', )
         path_to_template = os.path.join(self.abs_path, 'log_analyzer', 'templates', 'report.html')
-        render(table_json, report_name, report_dir, path_to_template)
+        render('', report_name, report_dir, path_to_template)
         self.assertTrue(os.path.exists(os.path.join(report_dir, report_name)))
 
     def test_render_if_report_dir_not_exist(self):
