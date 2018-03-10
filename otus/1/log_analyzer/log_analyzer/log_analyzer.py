@@ -30,13 +30,13 @@ def load_config(path_to_file: str) -> dict:
     try:
         with open(path_to_file, 'rb') as config_file:
             try:
-                config = json.loads(config_file.read())
+                loaded_config = json.loads(config_file.read())
             except json.JSONDecodeError as e:
                 sys.exit(f"Broken configuration file: {path_to_file}")
     except FileNotFoundError as e:
         sys.exit(f"{e.strerror}: {path_to_file}")
 
-    return config
+    return loaded_config
 
 
 def get_last_log_file(path_to_log_dir):
@@ -81,16 +81,59 @@ def render(table_json: str, report_name: str, report_dir: str, path_to_template=
         sys.exit(f"Wrong path to template: {path_to_template} ({e.strerror})")
 
 
+def calculate_report(path_to_log_file, size=1000):
+    table = dict()
+    with open(path_to_log_file, "r") as f_out:
+        own_num_rows = 0  # общее количество строк в логе
+        error_rows = 0  # количество нераспарсенных строк
+        own_num_request = 0  # общее количество распарсенных запросов
+        own_sum_request_time = 0  # $request_time всех запросов
+        for line in f_out:
+            own_num_rows += 1
+            match = re.search(r"(?P<path>\S+) HTTP\/1\.\d\".*\"(?P<request_time>.*)", line)
+            if match:
+                own_num_request += 1
+                path = match.group(1)
+                request_time = match.group(2)
+                request_time = float(request_time.strip())
+                own_sum_request_time += request_time
+
+                if path in table:
+                    table[path]['count'] += 1
+                    table[path]['time_sum'] += request_time
+                    table[path]['time_avg'].append(request_time)
+                    table[path]['time_max'] = request_time if request_time > table[path]['time_max'] else table[path]['time_max']
+                else:
+                    table[path] = {'url': path,
+                                   'count': 1,
+                                   'count_perc': 0,
+                                   'time_avg': [request_time],
+                                   'time_max': request_time,
+                                   'time_med': 0,
+                                   'time_perc': 0,
+                                   'time_sum': request_time}
+            else:
+                error_rows += 1
+    table = list(table.values())
+    table.sort(key=lambda el: el['time_sum'], reverse=True)
+    table = table[0:size]
+
+    for row in table:
+        row['time_avg'] = sum(row['time_avg']) / len(row['time_avg'])
+        row['count_perc'] = row['count'] * 100 / own_num_request
+        row['time_perc'] = row['time_sum'] * 100 / own_sum_request_time
+    return table
+
+
 def main(config: dict, args):
+
     loaded_config = load_config(args.config)
     merged_config = {**config, **loaded_config}
+
     path_to_log_dir = os.path.abspath(merged_config['LOG_DIR'])
     log_file = get_last_log_file(path_to_log_dir)
 
-    with open(log_file, "r") as f_out:
-        line = f_out.readline()
-        pass
-
+    calculate_report(log_file, size=merged_config['REPORT_SIZE'])
     pass
 
 

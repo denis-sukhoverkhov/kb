@@ -4,7 +4,7 @@ import shutil
 import unittest
 
 import os
-from log_analyzer.log_analyzer import load_config, get_last_log_file, render
+from log_analyzer.log_analyzer import load_config, get_last_log_file, render, calculate_report
 
 
 class TestLogAnalyzer(unittest.TestCase):
@@ -166,6 +166,14 @@ class TestLogAnalyzer(unittest.TestCase):
         render(self._generate_table_json(1), 'test_report.html', report_dir, path_to_template)
 
         self.assertTrue(os.path.exists(report_dir))
+
+    def test_calculate_report(self):
+        path_to_file = self._generate_plain_sample("nginx-access-ui.log-20170630")
+        report_size = 10
+        table = calculate_report(path_to_file, size=report_size)
+        self.assertIsInstance(table, list)
+        self.assertTrue(len(table) > 0)
+        self.assertTrue(len(table) <= report_size)
 
     def test_render_if_all_is_normal(self):
         pass
