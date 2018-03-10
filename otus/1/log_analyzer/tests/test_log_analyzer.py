@@ -34,13 +34,18 @@ class TestLogAnalyzer(unittest.TestCase):
 
         return path_to_file
 
-    def _generate_gz_sample(self, file_name="nginx-access-ui.log-20170630"):
+    def _generate_gz_sample(self, file_name="nginx-access-ui.log-20170630", is_remove_plain=False):
         path_to_plain_file = self._generate_plain_sample(file_name)
         patrh_to_gz_file = f'{path_to_plain_file}.gz'
 
         with open(path_to_plain_file, 'rb') as f_in:
             with gzip.open(patrh_to_gz_file, 'wb') as f_out:
                 shutil.copyfileobj(f_in, f_out)
+
+        if is_remove_plain:
+            os.remove(path_to_plain_file)
+
+        return patrh_to_gz_file
 
     def _generate_config_file(self, file_name="config.json", config=None):
 
@@ -96,10 +101,26 @@ class TestLogAnalyzer(unittest.TestCase):
         self.assertEqual(path_to_last_log_file, log_file_path_list[-1])
 
     def test_take_last_log_file_gz(self):
-        pass
+        template = "nginx-access-ui.log-201706"
+        log_name_list = [f"{template}{str(day).zfill(2)}" for day in range(1, 4)]
+        log_file_path_list = [self._generate_gz_sample(log_name, is_remove_plain=True) for log_name in log_name_list]
 
-    def test_take_last_log_file_gz_and_plain(self):
-        pass
+        path_to_last_log_file = get_last_log_file(self.path_to_temp)
+        self.assertTrue(path_to_last_log_file in log_file_path_list)
+        self.assertEqual(path_to_last_log_file, log_file_path_list[-1])
+
+    def test_take_last_log_file_gz_and_plain_mixed(self):
+        template = "nginx-access-ui.log-201706"
+        log_name_list = [f"{template}{str(day).zfill(2)}" for day in range(1, 4)]
+        gz_list = [self._generate_gz_sample(log_name, is_remove_plain=True) for log_name in log_name_list]
+
+        log_name_list = [f"{template}{str(day).zfill(2)}" for day in range(4, 6)]
+        plain_list = [self._generate_plain_sample(log_name) for log_name in log_name_list]
+
+        path_to_last_log_file = get_last_log_file(self.path_to_temp)
+        self.assertTrue(path_to_last_log_file in plain_list)
+        self.assertTrue(path_to_last_log_file not in gz_list)
+        self.assertEqual(path_to_last_log_file, plain_list[-1])
 
     def test_processing_not_exist_log(self):
         pass
