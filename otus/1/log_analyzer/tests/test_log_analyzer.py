@@ -122,6 +122,13 @@ class TestLogAnalyzer(unittest.TestCase):
         self.assertTrue(path_to_last_log_file not in gz_list)
         self.assertEqual(path_to_last_log_file, plain_list[-1])
 
+    def test_take_last_log_wrong_format_date(self):
+        self._generate_plain_sample("nginx-access-ui.log-01052017")
+
+        with self.assertRaises(SystemExit) as exc:
+            get_last_log_file(self.path_to_temp)
+        self.assertIsInstance(exc.exception, SystemExit)
+
     def test_processing_not_exist_log(self):
         pass
 
