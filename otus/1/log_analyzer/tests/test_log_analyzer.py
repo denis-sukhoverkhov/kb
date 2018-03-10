@@ -1,8 +1,10 @@
 import gzip
+import json
 import shutil
 import unittest
 
 import os
+from log_analyzer.log_analyzer import load_config, get_last_log_file
 
 
 class TestLogAnalyzer(unittest.TestCase):
@@ -40,12 +42,58 @@ class TestLogAnalyzer(unittest.TestCase):
             with gzip.open(patrh_to_gz_file, 'wb') as f_out:
                 shutil.copyfileobj(f_in, f_out)
 
+    def _generate_config_file(self, file_name="config.json", config=None):
+
+        if config is None:
+            config = {
+                "REPORT_SIZE": 1000,
+                "REPORT_DIR": "./reports",
+                "LOG_DIR": "./log"
+            }
+        path_to_config_file = os.path.join(self.path_to_temp, file_name)
+
+        with open(path_to_config_file, 'w') as f_out:
+            f_out.write(json.dumps(config))
+
+        return path_to_config_file
+
+    def test_load_normal_config(self):
+        path_to_config_file = self._generate_config_file()
+
+        config = load_config(path_to_config_file)
+        self.assertIsInstance(config, dict)
+
+    def test_load_does_not_exist_config(self):
+        with self.assertRaises(SystemExit) as exc:
+            load_config("some_wrong_path_to_config.json")
+        self.assertIsInstance(exc.exception, SystemExit)
+
+    def test_load_broken_json_config(self):
+        path_to_config_file = self._generate_config_file(config="wrong config")
+        with open(path_to_config_file, 'w') as f_out:
+            f_out.write("some text, which broke json-format")
+
+        with self.assertRaises(SystemExit) as exc:
+            load_config(path_to_config_file)
+        self.assertIsInstance(exc.exception, SystemExit)
+
+    def test_validation_loaded_config(self):
+        path_to_config_file = self._generate_config_file()
+        config = load_config(path_to_config_file)
+
+        self.assertTrue("REPORT_SIZE" in config)
+        self.assertTrue("REPORT_DIR" in config)
+        self.assertTrue("LOG_DIR" in config)
+        self.assertEqual(len(config), 3)
+
     def test_take_last_log_file_plain(self):
         template = "nginx-access-ui.log-201706"
-        log_name_list = [f"{template}{str(day).zfill(2)}"for day in range(1,4)]
-
+        log_name_list = [f"{template}{str(day).zfill(2)}" for day in range(1, 4)]
         log_file_path_list = [self._generate_plain_sample(log_name) for log_name in log_name_list]
 
+        path_to_last_log_file = get_last_log_file(self.path_to_temp)
+        self.assertTrue(path_to_last_log_file in log_file_path_list)
+        self.assertEqual(path_to_last_log_file, log_file_path_list[-1])
 
     def test_take_last_log_file_gz(self):
         pass
