@@ -12,6 +12,9 @@ import json
 import os
 import re
 import sys
+from bisect import insort, bisect_left
+from collections import deque
+from itertools import islice
 from string import Template
 
 config = {
@@ -39,6 +42,17 @@ def load_config(path_to_file: str) -> dict:
     return loaded_config
 
 
+def extract_date_frome_file_name(file_name):
+    pattern = r"nginx-access-ui.log-(?P<date>\d{8})(.gz)?"
+    match = re.match(pattern, file_name)
+    date_group = match.group(1)
+    if match:
+        try:
+            return datetime.datetime.strptime(date_group, "%Y%m%d").date()
+        except ValueError as e:
+            sys.exit(f"Incorrect date format in name of file '{file_name}', it must be %Y%m%d")
+
+
 def get_last_log_file(path_to_log_dir):
     """
     Возвращает путь к самому свежему файлу лога из переданной директории path_to_log_dir, фильтрует
@@ -46,17 +60,9 @@ def get_last_log_file(path_to_log_dir):
     :param path_to_log_dir:
     :return:
     """
-    pattern = r"nginx-access-ui.log-(?P<date>\d{8})(.gz)?"
     files_dict = {}
-    for f in os.listdir(path_to_log_dir):
-        match = re.match(pattern, f)
-        date_group = match.group(1)
-        if match:
-            try:
-                files_dict[datetime.datetime.strptime(date_group, "%Y%m%d").date()] = os.path.join(path_to_log_dir, f)
-            except ValueError as e:
-                sys.exit(f"Incorrect date format in name of file '{f}', it must be %Y%m%d")
-
+    for file_name in os.listdir(path_to_log_dir):
+        files_dict[extract_date_frome_file_name(file_name)] = os.path.join(path_to_log_dir, file_name)
     date_list = list(files_dict.keys())
     date_list.sort()
 
@@ -81,6 +87,26 @@ def render(table_json: str, report_name: str, report_dir: str, path_to_template=
         sys.exit(f"Wrong path to template: {path_to_template} ({e.strerror})")
 
 
+def running_median_insort(seq, window_size=1000):
+    """Contributed by Peter Otten"""
+    seq = iter(seq)
+    d = deque()
+    s = []
+    result = []
+    for item in islice(seq, window_size):
+        d.append(item)
+        insort(s, item)
+        result.append(s[len(d) // 2])
+    m = window_size // 2
+    for item in seq:
+        old = d.popleft()
+        d.append(item)
+        del s[bisect_left(s, old)]
+        insort(s, item)
+        result.append(s[m])
+    return result
+
+
 def calculate_report(path_to_log_file, size=1000):
     table = dict()
     with open(path_to_log_file, "r") as f_out:
@@ -102,14 +128,15 @@ def calculate_report(path_to_log_file, size=1000):
                     table[path]['count'] += 1
                     table[path]['time_sum'] += request_time
                     table[path]['time_avg'].append(request_time)
-                    table[path]['time_max'] = request_time if request_time > table[path]['time_max'] else table[path]['time_max']
+                    table[path]['time_max'] = request_time if request_time > table[path]['time_max'] else table[path][
+                        'time_max']
                 else:
                     table[path] = {'url': path,
                                    'count': 1,
                                    'count_perc': 0,
                                    'time_avg': [request_time],
                                    'time_max': request_time,
-                                   'time_med': 0,
+                                   'time_med': [request_time],
                                    'time_perc': 0,
                                    'time_sum': request_time}
             else:
@@ -118,23 +145,31 @@ def calculate_report(path_to_log_file, size=1000):
     table.sort(key=lambda el: el['time_sum'], reverse=True)
     table = table[0:size]
 
+    round_prec = 3
     for row in table:
-        row['time_avg'] = sum(row['time_avg']) / len(row['time_avg'])
-        row['count_perc'] = row['count'] * 100 / own_num_request
-        row['time_perc'] = row['time_sum'] * 100 / own_sum_request_time
+        len_time_list = len(row['time_avg'])
+        row['time_med'] = running_median_insort(row['time_avg'], window_size=len_time_list)[-1]
+        row['time_avg'] = round(sum(row['time_avg']) / len(row['time_avg']), round_prec)
+        row['count_perc'] = round(row['count'] * 100 / own_num_request, round_prec)
+        row['time_perc'] = round(row['time_sum'] * 100 / own_sum_request_time, round_prec)
+        row['time_max'] = round(row['time_max'], 3)
+        row['time_sum'] = round(row['time_sum'], 3)
     return table
 
 
 def main(config: dict, args):
-
     loaded_config = load_config(args.config)
     merged_config = {**config, **loaded_config}
 
     path_to_log_dir = os.path.abspath(merged_config['LOG_DIR'])
     log_file = get_last_log_file(path_to_log_dir)
 
-    calculate_report(log_file, size=merged_config['REPORT_SIZE'])
-    pass
+    table = calculate_report(log_file, size=merged_config['REPORT_SIZE'])
+    log_name = os.path.basename(log_file)
+    date_from_log_name = extract_date_frome_file_name(log_name)
+    report_name = f"report-{date_from_log_name:%Y-%m-%d}.html"
+    path_to_report_dir = os.path.abspath(merged_config['REPORT_DIR'])
+    render(json.dumps(table), report_name, path_to_report_dir)
 
 
 if __name__ == "__main__":
