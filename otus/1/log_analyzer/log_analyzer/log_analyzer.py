@@ -9,6 +9,7 @@
 import argparse
 import datetime
 import json
+import logging
 import os
 import re
 import sys
@@ -35,6 +36,7 @@ def load_config(path_to_file: str) -> dict:
             try:
                 loaded_config = json.loads(config_file.read())
             except json.JSONDecodeError as e:
+                logging.error(e)
                 sys.exit(f"Broken configuration file: {path_to_file}")
     except FileNotFoundError as e:
         sys.exit(f"{e.strerror}: {path_to_file}")
@@ -50,6 +52,7 @@ def extract_date_frome_file_name(file_name):
         try:
             return datetime.datetime.strptime(date_group, "%Y%m%d").date()
         except ValueError as e:
+            logging.error(e)
             sys.exit(f"Incorrect date format in name of file '{file_name}', it must be %Y%m%d")
 
 
@@ -82,6 +85,7 @@ def render(table_json: str, report_name: str, report_dir: str, path_to_template=
                 with open(path_to_report_file, "w") as f_in:
                     f_in.write(Template(html_template).safe_substitute(table_json=table_json))
             except FileNotFoundError as e:
+                logging.error(e)
                 sys.exit(f"Wrong path to report file: {path_to_report_file} ({e.strerror})")
     except FileNotFoundError as e:
         sys.exit(f"Wrong path to template: {path_to_template} ({e.strerror})")
@@ -161,6 +165,12 @@ def main(config: dict, args):
     loaded_config = load_config(args.config)
     merged_config = {**config, **loaded_config}
 
+    logging.basicConfig(filename=merged_config['TS_DIR'] if 'TS_DIR' in merged_config else None,
+                        level=logging.INFO,
+                        format='[%(asctime)s] %(levelname).1s %(message)s',
+                        datefmt='%Y.%m.%d %H:%M:%S')
+    logging.info("Program started")
+
     path_to_log_dir = os.path.abspath(merged_config['LOG_DIR'])
     path_to_report_dir = os.path.abspath(merged_config['REPORT_DIR'])
     log_file = get_last_log_file(path_to_log_dir)
@@ -170,13 +180,17 @@ def main(config: dict, args):
 
     path_to_new_report_file = os.path.join(path_to_report_dir, report_name)
     if os.path.exists(path_to_new_report_file):
-        sys.exit(f"The newest report has already been generated: {path_to_new_report_file}")
+        message = f"The newest report has already been generated: {path_to_new_report_file}"
+        logging.info(message)
+        sys.exit(message)
 
     # counting values for report
     table = calculate_report(log_file, size=merged_config['REPORT_SIZE'])
 
     # rendering html template
     render(json.dumps(table), report_name, path_to_report_dir)
+
+    logging.info("Done!")
 
 
 if __name__ == "__main__":

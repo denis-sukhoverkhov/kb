@@ -215,6 +215,15 @@ class TestLogAnalyzer(unittest.TestCase):
         self.assertTrue(len(table) > 0)
         self.assertTrue(len(table) <= report_size)
 
+    def test_extract_date_frome_normal_file_name(self):
+        pass
+
+    def test_extract_date_frome_wrong_file_name(self):
+        pass
+
+    def test_extract_date_frome_wrong_fomat_date_in_file_name(self):
+        pass
+
     def test_render_if_all_is_normal(self):
         pass
 
