@@ -162,13 +162,20 @@ def main(config: dict, args):
     merged_config = {**config, **loaded_config}
 
     path_to_log_dir = os.path.abspath(merged_config['LOG_DIR'])
+    path_to_report_dir = os.path.abspath(merged_config['REPORT_DIR'])
     log_file = get_last_log_file(path_to_log_dir)
-
-    table = calculate_report(log_file, size=merged_config['REPORT_SIZE'])
     log_name = os.path.basename(log_file)
     date_from_log_name = extract_date_frome_file_name(log_name)
     report_name = f"report-{date_from_log_name:%Y-%m-%d}.html"
-    path_to_report_dir = os.path.abspath(merged_config['REPORT_DIR'])
+
+    path_to_new_report_file = os.path.join(path_to_report_dir, report_name)
+    if os.path.exists(path_to_new_report_file):
+        sys.exit(f"The newest report has already been generated: {path_to_new_report_file}")
+
+    # counting values for report
+    table = calculate_report(log_file, size=merged_config['REPORT_SIZE'])
+
+    # rendering html template
     render(json.dumps(table), report_name, path_to_report_dir)
 
 
