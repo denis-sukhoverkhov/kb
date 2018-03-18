@@ -6,7 +6,7 @@ import shutil
 import unittest
 
 import os
-from log_analyzer.log_analyzer import load_config, get_last_log_file, render, calculate_report, openfile, \
+from log_analyzer import load_config, get_last_log_file, render, calculate_report, openfile, \
     extract_date_frome_file_name
 
 logging.disable(logging.CRITICAL)
@@ -197,7 +197,7 @@ class TestLogAnalyzer(unittest.TestCase):
     def test_render_if_table_json_is_empty(self):
         report_name = 'test_report.html'
         report_dir = os.path.join(self.path_to_temp, 'reports', )
-        path_to_template = os.path.join(self.abs_path, 'log_analyzer', 'templates', 'report.html')
+        path_to_template = os.path.join(self.abs_path, 'templates', 'report.html')
         render('', report_name, report_dir, path_to_template)
         self.assertTrue(os.path.exists(os.path.join(report_dir, report_name)))
 
@@ -206,7 +206,7 @@ class TestLogAnalyzer(unittest.TestCase):
 
         self.assertFalse(os.path.exists(report_dir))
 
-        path_to_template = os.path.join(self.abs_path, 'log_analyzer', 'templates', 'report.html')
+        path_to_template = os.path.join(self.abs_path, 'templates', 'report.html')
         render(self._generate_table_json(1), 'test_report.html', report_dir, path_to_template)
 
         self.assertTrue(os.path.exists(report_dir))
