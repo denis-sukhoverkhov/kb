@@ -1,12 +1,16 @@
 import datetime
 import gzip
 import json
+import logging
 import shutil
 import unittest
 
 import os
 from log_analyzer.log_analyzer import load_config, get_last_log_file, render, calculate_report, openfile, \
     extract_date_frome_file_name
+
+# logger off
+logging.disable(logging.CRITICAL)
 
 
 class TestLogAnalyzer(unittest.TestCase):
@@ -68,8 +72,7 @@ class TestLogAnalyzer(unittest.TestCase):
 1.194.135.240 -  - [29/Jun/2017:03:50:23 +0300] "GET /api/v2/group/7808057/statistic/sites/?date_type=day&date_from=2017-06-28&date_to=2017-06-28 HTTP/1.1" 200 22 "-" "python-requests/2.13.0" "-" "1498697423-3979856266-4708-9752792" "8a7741a54297568b" 0.063
 1.168.229.112 545a7b821307935d  - [29/Jun/2017:03:50:24 +0300] "GET /agency/banners_stats/?date1=26-06-2017&date2=28-06-2017&date_type=day&do=1&rt=campaign&oi=5370438&as_json=1 HTTP/1.1" 200 316 "-" "python-requests/2.13.0" "-" "1498697417-743364018-4708-9752674" "-" 6.828
 1.199.168.112 2a828197ae235b0b3cb  - [29/Jun/2017:03:50:24 +0300] "GET /api/1/banners/?campaign=1236490 HTTP/1.1" 200 13945 "-" "Lynx/2.8.8dev.9 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/2.10.5" "-" "1498697423-2760328665-4708-9752788" "-" 0.314
-1.200.76.128 f032b48fb33e1e692  - [29/Jun/2017:03:50:24 +0300] "GET /api/1/campaigns/?id=7789709 HTTP/1.1" 200 608 "-" "-" "-" "1498697423-4102637017-4708-9752791" "-" 0.146
-"""
+1.200.76.128 f032b48fb33e1e692  - [29/Jun/2017:03:50:24 +0300] "GET /api/1/campaigns/?id=7789709 HTTP/1.1" 200 608 "-" "-" "-" "1498697423-4102637017-4708-9752791" "-" 0.146"""
         path_to_file = os.path.join(self.path_to_temp, file_name)
         with open(path_to_file, "w") as file:
             file.write(content)
