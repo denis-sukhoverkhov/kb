@@ -67,6 +67,10 @@ def get_last_log_file(path_to_log_dir):
     :return:
     """
     files_dict = {}
+    if not os.path.exists(path_to_log_dir):
+        error_message = f"Directory with logs does not exist: {path_to_log_dir}"
+        logging.error(error_message)
+        sys.exit(error_message)
     for file_name in os.listdir(path_to_log_dir):
         files_dict[extract_date_frome_file_name(file_name)] = os.path.join(path_to_log_dir, file_name)
     date_list = list(files_dict.keys())
