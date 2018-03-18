@@ -8,6 +8,7 @@
 #                     '$request_time';
 import argparse
 import datetime
+import gzip
 import json
 import logging
 import os
@@ -111,9 +112,17 @@ def running_median_insort(seq, window_size=1000):
     return result
 
 
-def calculate_report(path_to_log_file, size=1000):
+def openfile(filename, mode='r'):
+    if filename.endswith('.gz'):
+        return gzip.open(filename, mode)
+    else:
+        return open(filename, mode)
+
+
+def calculate_report(path_to_log_file, size=1000, error_threshold_perc=51):
     table = dict()
-    with open(path_to_log_file, "r") as f_out:
+
+    with openfile(path_to_log_file) as f_out:
         own_num_rows = 0  # общее количество строк в логе
         error_rows = 0  # количество нераспарсенных строк
         own_num_request = 0  # общее количество распарсенных запросов
@@ -145,6 +154,13 @@ def calculate_report(path_to_log_file, size=1000):
                                    'time_sum': request_time}
             else:
                 error_rows += 1
+    error_parse_perc = error_rows * 100 / own_num_rows if own_num_rows > 0 else 0
+    logging.info(f'Percentage of errors when parsing a log: {error_parse_perc}%')
+    if error_parse_perc >= error_threshold_perc:
+        message = "Critical error percentage when parsing a log: {error_parse_perc}%"
+        logging.error(message)
+        sys.exit(message)
+
     table = list(table.values())
     table.sort(key=lambda el: el['time_sum'], reverse=True)
     table = table[0:size]
@@ -156,8 +172,8 @@ def calculate_report(path_to_log_file, size=1000):
         row['time_avg'] = round(sum(row['time_avg']) / len(row['time_avg']), round_prec)
         row['count_perc'] = round(row['count'] * 100 / own_num_request, round_prec)
         row['time_perc'] = round(row['time_sum'] * 100 / own_sum_request_time, round_prec)
-        row['time_max'] = round(row['time_max'], 3)
-        row['time_sum'] = round(row['time_sum'], 3)
+        row['time_max'] = round(row['time_max'], round_prec)
+        row['time_sum'] = round(row['time_sum'], round_prec)
     return table
 
 

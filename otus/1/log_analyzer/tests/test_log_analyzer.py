@@ -4,7 +4,7 @@ import shutil
 import unittest
 
 import os
-from log_analyzer.log_analyzer import load_config, get_last_log_file, render, calculate_report
+from log_analyzer.log_analyzer import load_config, get_last_log_file, render, calculate_report, openfile
 
 
 class TestLogAnalyzer(unittest.TestCase):
@@ -223,6 +223,18 @@ class TestLogAnalyzer(unittest.TestCase):
 
     def test_extract_date_frome_wrong_fomat_date_in_file_name(self):
         pass
+
+    def test_openfile_if_plain(self):
+        path_to_file = self._generate_plain_sample("nginx-access-ui.log-20170630")
+
+        with openfile(path_to_file) as out_f:
+            self.assertIsInstance(out_f.readline(), str)
+
+    def test_openfile_if_gzip(self):
+        path_to_file = self._generate_gz_sample("nginx-access-ui.log-20170630", is_remove_plain=True)
+
+        with openfile(path_to_file, 'rb') as out_f:
+            self.assertIsInstance(out_f.readline(), bytes)
 
     def test_render_if_all_is_normal(self):
         pass
