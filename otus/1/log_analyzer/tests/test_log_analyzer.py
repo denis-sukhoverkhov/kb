@@ -9,7 +9,6 @@ import os
 from log_analyzer.log_analyzer import load_config, get_last_log_file, render, calculate_report, openfile, \
     extract_date_frome_file_name
 
-# logger off
 logging.disable(logging.CRITICAL)
 
 
@@ -249,15 +248,6 @@ class TestLogAnalyzer(unittest.TestCase):
 
         with openfile(path_to_file, 'rb') as out_f:
             self.assertIsInstance(out_f.readline(), bytes)
-
-    def test_render_if_all_is_normal(self):
-        pass
-
-    def test_processing_not_exist_log(self):
-        pass
-
-    def test_repeat_processing_the_same_log(self):
-        pass
 
 
 if __name__ == '__main__':
