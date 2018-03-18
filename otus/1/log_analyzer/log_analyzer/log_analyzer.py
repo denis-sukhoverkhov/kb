@@ -48,13 +48,15 @@ def load_config(path_to_file: str) -> dict:
 def extract_date_frome_file_name(file_name):
     pattern = r"nginx-access-ui.log-(?P<date>\d{8})(.gz)?"
     match = re.match(pattern, file_name)
-    date_group = match.group(1)
     if match:
+        date_group = match.group(1)
         try:
             return datetime.datetime.strptime(date_group, "%Y%m%d").date()
         except ValueError as e:
             logging.error(e)
             sys.exit(f"Incorrect date format in name of file '{file_name}', it must be %Y%m%d")
+
+    return None
 
 
 def get_last_log_file(path_to_log_dir):

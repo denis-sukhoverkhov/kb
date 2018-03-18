@@ -1,10 +1,12 @@
+import datetime
 import gzip
 import json
 import shutil
 import unittest
 
 import os
-from log_analyzer.log_analyzer import load_config, get_last_log_file, render, calculate_report, openfile
+from log_analyzer.log_analyzer import load_config, get_last_log_file, render, calculate_report, openfile, \
+    extract_date_frome_file_name
 
 
 class TestLogAnalyzer(unittest.TestCase):
@@ -207,22 +209,31 @@ class TestLogAnalyzer(unittest.TestCase):
 
         self.assertTrue(os.path.exists(report_dir))
 
-    def test_calculate_report(self):
+    def test_calculate_report_if_repot_size_default(self):
+        path_to_file = self._generate_plain_sample("nginx-access-ui.log-20170630")
+        table = calculate_report(path_to_file)
+        self.assertIsInstance(table, list)
+        self.assertTrue(len(table) > 0)
+
+    def test_calculate_report_if_repot_size_equal_ten(self):
         path_to_file = self._generate_plain_sample("nginx-access-ui.log-20170630")
         report_size = 10
         table = calculate_report(path_to_file, size=report_size)
-        self.assertIsInstance(table, list)
-        self.assertTrue(len(table) > 0)
-        self.assertTrue(len(table) <= report_size)
+        self.assertTrue(len(table) == report_size)
 
     def test_extract_date_frome_normal_file_name(self):
-        pass
+        name = 'nginx-access-ui.log-20170630'
+        self.assertIsInstance(extract_date_frome_file_name(name), datetime.date)
 
     def test_extract_date_frome_wrong_file_name(self):
-        pass
+        name = 'nginx-access.log-30062017'
+        self.assertIsNone(extract_date_frome_file_name(name))
 
     def test_extract_date_frome_wrong_fomat_date_in_file_name(self):
-        pass
+        name = 'nginx-access-ui.log-30062017'
+
+        with self.assertRaises(SystemExit):
+            extract_date_frome_file_name(name)
 
     def test_openfile_if_plain(self):
         path_to_file = self._generate_plain_sample("nginx-access-ui.log-20170630")
