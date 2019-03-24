@@ -4,6 +4,9 @@ def is_prime(n):
     :param n:
     :return:
     """
+    if n == 1:
+        return False
+
     if n % 2 == 0:
         return n == 2
     d = 3
