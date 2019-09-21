@@ -15,6 +15,10 @@ func main() {
 	//fmt.Println(algorithms.IsPrimeNumber(29))
 
 	//fmt.Println(algorithms.FibRec(7))
+	//str := "qwerty"
+	//utf8.RuneCount([]byte(str))
 
 	fmt.Println(algorithms.FibIter(12))
+
+	fmt.Println(algorithms.ReverseString("i am programmist"))
 }
