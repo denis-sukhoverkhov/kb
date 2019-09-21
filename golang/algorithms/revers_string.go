@@ -1,15 +1,18 @@
 package algorithms
 
-import "unicode/utf8"
+import (
+	"bytes"
+	"unicode/utf8"
+)
 
 func ReverseString(s string) string {
-	newString := ""
+	var buffer bytes.Buffer
 
 	for i := utf8.RuneCount([]byte(s)) - 1; i >= 0; i-- {
-		newString += string(s[i])
+		buffer.WriteByte(s[i])
 	}
 
-	return newString
+	return buffer.String()
 }
 
 func ReverseString2(s string) string {

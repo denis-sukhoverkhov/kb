@@ -20,6 +20,6 @@ func main() {
 
 	fmt.Println(algorithms.FibIter(12))
 
-	//fmt.Println(algorithms.ReverseString("i am programmist"))
-	fmt.Println(algorithms.ReverseString2("i am programmist"))
+	fmt.Println(algorithms.ReverseString("i am programmist"))
+	//fmt.Println(algorithms.ReverseString2("i am programmist"))
 }
