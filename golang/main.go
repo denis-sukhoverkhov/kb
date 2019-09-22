@@ -20,4 +20,7 @@ func main() {
 
 	fmt.Println(algorithms.ReverseString("i am programmist"))
 	fmt.Println(algorithms.ReverseString2("i am programmist"))
+
+	fmt.Println(algorithms.SquareRoot(56))
+	fmt.Println(algorithms.BSquareRoot(56))
 }
