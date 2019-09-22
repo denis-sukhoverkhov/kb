@@ -23,4 +23,6 @@ func main() {
 
 	fmt.Println(algorithms.SquareRoot(56))
 	fmt.Println(algorithms.BSquareRoot(56))
+
+	algorithms.MinionGame("SUkhoverkhov")
 }
