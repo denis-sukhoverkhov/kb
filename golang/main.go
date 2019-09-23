@@ -2,6 +2,7 @@ package main
 
 import (
 	"./algorithms"
+	"fmt"
 )
 
 func main() {
@@ -24,4 +25,9 @@ func main() {
 	//fmt.Println(algorithms.BSquareRoot(56))
 
 	algorithms.MinionGame("SUkhoverkhov")
+
+	str := "domclick"
+	for pos, char := range str {
+		fmt.Printf("character %#U starts at byte position %d\n", char, pos)
+	}
 }

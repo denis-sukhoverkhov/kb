@@ -20,9 +20,9 @@ func MinionGame(str string) {
 	}
 
 	if kevsc > stusc {
-		fmt.Printf("Kevin %v", kevsc)
+		fmt.Printf("Kevin %v\n", kevsc)
 	} else {
-		fmt.Printf("Stuart %v", stusc)
+		fmt.Printf("Stuart %v\n", stusc)
 	}
 }
 
