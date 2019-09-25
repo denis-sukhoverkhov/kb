@@ -3,6 +3,7 @@ package main
 import (
 	"./algorithms"
 	"./algorithms/search"
+	"./sandbox"
 	"fmt"
 )
 
@@ -34,4 +35,7 @@ func main() {
 
 	arr := []int{10, 45, 56, 57, 91, 92, 100, 500}
 	fmt.Println(search.BSearch(arr, 100))
+
+	var d sandbox.Direction = sandbox.North
+	fmt.Print(d)
 }
