@@ -2,6 +2,7 @@ package main
 
 import (
 	"./algorithms"
+	"./algorithms/search"
 	"fmt"
 )
 
@@ -30,4 +31,7 @@ func main() {
 	for pos, char := range str {
 		fmt.Printf("character %#U starts at byte position %d\n", char, pos)
 	}
+
+	arr := []int{10, 45, 56, 57, 91, 92, 100, 500}
+	fmt.Println(search.BSearch(arr, 100))
 }
