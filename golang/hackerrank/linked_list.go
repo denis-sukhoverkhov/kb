@@ -102,21 +102,49 @@ func reverse(head *SinglyLinkedListNode) *SinglyLinkedListNode {
 	return prev
 }
 
-func main() {
-	llist := SinglyLinkedList{}
+func getNode(head *SinglyLinkedListNode, positionFromTail int32) int32 {
 
-	arr := []int32{16, 13, 7}
-
-	for i := 0; i < len(arr); i++ {
-		llist.insertNodeIntoSinglyLinkedList(arr[i])
+	current := head
+	deep := int32(0)
+	for current != nil {
+		deep++
+		current = current.next
 	}
-	fmt.Println(insertNodeAtPosition(llist.head, 1, 2))
 
-	fmt.Println(deleteNode(llist.head, 0))
+	tmp := head
+	for deep != positionFromTail+1 {
+		deep--
+		tmp = tmp.next
+	}
 
-	reversePrint(llist.head)
+	return tmp.data
+}
 
-	printLinkedList(llist.head)
+func main() {
+	//llist := SinglyLinkedList{}
+	//
+	//arr := []int32{16, 13, 7}
+	//
+	//for i := 0; i < len(arr); i++ {
+	//	llist.insertNodeIntoSinglyLinkedList(arr[i])
+	//}
+	//fmt.Println(insertNodeAtPosition(llist.head, 1, 2))
+	//
+	//fmt.Println(deleteNode(llist.head, 0))
+	//
+	//reversePrint(llist.head)
+	//
+	//printLinkedList(llist.head)
+	//
+	//fmt.Println(reverse(llist.head))
 
-	fmt.Println(reverse(llist.head))
+	arr2 := []int32{16, 13, 7, 30, 20}
+
+	llist1 := SinglyLinkedList{}
+
+	for i := 0; i < len(arr2); i++ {
+		llist1.insertNodeIntoSinglyLinkedList(arr2[i])
+	}
+
+	fmt.Println(getNode(llist1.head, 2))
 }
