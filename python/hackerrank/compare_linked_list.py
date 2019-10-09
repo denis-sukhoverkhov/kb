@@ -96,6 +96,20 @@ def add_node(node, new_node):
         return node
 
 
+def findMergeNode(head1, head2):
+    cur = head1
+    while cur is not None:
+        cur2 = head2
+        while cur2 is not None:
+            if cur is cur2:
+                return cur.data
+            cur2 = cur2.next
+
+        cur = cur.next
+
+    return None
+
+
 if __name__ == '__main__':
 
     llist1 = SinglyLinkedList()
@@ -113,4 +127,6 @@ if __name__ == '__main__':
 
     l = mergeLists_iter(llist1.head, llist2.head)
     pass
+
+    print(findMergeNode(llist1.head, llist2.head))
 
