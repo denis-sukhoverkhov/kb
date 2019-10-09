@@ -120,6 +120,25 @@ func getNode(head *SinglyLinkedListNode, positionFromTail int32) int32 {
 	return tmp.data
 }
 
+func removeDuplicates(head *SinglyLinkedListNode) *SinglyLinkedListNode {
+	temp := head
+
+	if temp == nil {
+		return head
+	}
+
+	for temp.next != nil {
+		if temp.data == temp.next.data {
+			new := temp.next.next
+			temp.next = new
+		} else {
+			temp = temp.next
+		}
+	}
+
+	return head
+}
+
 func main() {
 	//llist := SinglyLinkedList{}
 	//
@@ -138,7 +157,7 @@ func main() {
 	//
 	//fmt.Println(reverse(llist.head))
 
-	arr2 := []int32{16, 13, 7, 30, 20}
+	arr2 := []int32{1, 2, 2, 3, 3, 3, 3, 4}
 
 	llist1 := SinglyLinkedList{}
 
@@ -147,4 +166,6 @@ func main() {
 	}
 
 	fmt.Println(getNode(llist1.head, 2))
+
+	removeDuplicates(llist1.head)
 }
