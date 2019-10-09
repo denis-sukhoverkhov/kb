@@ -70,7 +70,7 @@ func sortedInsert(head *DoublyLinkedListNode, data int32) *DoublyLinkedListNode 
 			break
 		}
 
-		if current != nil && current.next == nil {
+		if current.next == nil {
 			node := &DoublyLinkedListNode{
 				next: nil,
 				prev: current,
@@ -85,8 +85,26 @@ func sortedInsert(head *DoublyLinkedListNode, data int32) *DoublyLinkedListNode 
 	return result
 }
 
+func reversed(head *DoublyLinkedListNode) *DoublyLinkedListNode {
+
+	current := head
+	// var temp *DoublyLinkedListNode
+	var newHead *DoublyLinkedListNode = head
+	for current != nil {
+		temp := current.prev
+		current.prev = current.next
+		current.next = temp
+		current = current.prev
+		if temp != nil {
+			newHead = temp.prev
+		}
+	}
+
+	return newHead
+}
+
 func main() {
-	arr2 := []int32{1, 2, 3}
+	arr2 := []int32{1, 2, 3, 4}
 
 	llist1 := DoublyLinkedList{}
 
@@ -94,5 +112,6 @@ func main() {
 		llist1.insertNodeIntoDoublyLinkedList(arr2[i])
 	}
 
-	sortedInsert(llist1.head, 4)
+	//sortedInsert(llist1.head, 4)
+	reversed(llist1.head)
 }
