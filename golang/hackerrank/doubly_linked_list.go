@@ -88,8 +88,7 @@ func sortedInsert(head *DoublyLinkedListNode, data int32) *DoublyLinkedListNode 
 func reversed(head *DoublyLinkedListNode) *DoublyLinkedListNode {
 
 	current := head
-	// var temp *DoublyLinkedListNode
-	var newHead *DoublyLinkedListNode = head
+	var newHead = head
 	for current != nil {
 		temp := current.prev
 		current.prev = current.next
