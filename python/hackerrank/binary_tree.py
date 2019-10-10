@@ -73,24 +73,24 @@ def inOrder(root):
 
 
 def height(root):
-    if root is None:
-        return -1
+    if root.left is None and root.right is None:
+        return 0
     else:
-        l_height = height(root.left)
-        r_height = height(root.right)
+        l_height = 0
+        if root.left:
+            l_height = height(root.left)
 
-        if l_height > r_height:
-            return l_height + 1
-        else:
-            return r_height + 1
+        r_height = 0
+        if root.right:
+            r_height = height(root.right)
 
+        return max(l_height, r_height) + 1
 
-tree = BinarySearchTree()
-# t = int(input())
+if __name__ == '__main__':
 
-# arr = list(map(int, input().split()))
+    tree = BinarySearchTree()
 
-for i in range(10):
-    tree.create(i)
+    for i in range(3):
+        tree.create(i)
 
-preOrder(tree.root)
+    print(height(tree.root))
