@@ -63,6 +63,16 @@ def postOrder(root):
     postOrder(root.right)
     print(root.info, end=" ")
 
+
+def inOrder(root):
+    #Write your code here
+    if root is None:
+        return
+
+    inOrder(root.left)
+    print(root.info, end=" ")
+    inOrder(root.right)
+
 tree = BinarySearchTree()
 # t = int(input())
 
