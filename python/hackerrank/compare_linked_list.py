@@ -110,6 +110,17 @@ def findMergeNode(head1, head2):
     return None
 
 
+def has_cycle(head):
+    slow_p = head
+    fast_p = head
+    while slow_p and fast_p and fast_p.next:
+        slow_p = slow_p.next
+        fast_p = fast_p.next.next
+        if slow_p is fast_p:
+            return True
+
+    return False
+
 if __name__ == '__main__':
 
     llist1 = SinglyLinkedList()
