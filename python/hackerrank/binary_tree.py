@@ -55,7 +55,6 @@ def preOrder(root):
 
 
 def postOrder(root):
-    #Write your code here
     if root is None:
         return
 
@@ -65,7 +64,6 @@ def postOrder(root):
 
 
 def inOrder(root):
-    #Write your code here
     if root is None:
         return
 
