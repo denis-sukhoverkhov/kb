@@ -73,6 +73,20 @@ def inOrder(root):
     print(root.info, end=" ")
     inOrder(root.right)
 
+
+def height(root):
+    if root is None:
+        return -1
+    else:
+        l_height = height(root.left)
+        r_height = height(root.right)
+
+        if l_height > r_height:
+            return l_height + 1
+        else:
+            return r_height + 1
+
+
 tree = BinarySearchTree()
 # t = int(input())
 
