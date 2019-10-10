@@ -54,6 +54,15 @@ def preOrder(root):
     preOrder(root.right)
 
 
+def postOrder(root):
+    #Write your code here
+    if root is None:
+        return
+
+    postOrder(root.left)
+    postOrder(root.right)
+    print(root.info, end=" ")
+
 tree = BinarySearchTree()
 # t = int(input())
 
