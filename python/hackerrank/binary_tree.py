@@ -1,3 +1,6 @@
+from queue import Queue
+
+
 class Node:
     def __init__(self, info):
         self.info = info
@@ -85,6 +88,18 @@ def height(root):
             r_height = height(root.right)
 
         return max(l_height, r_height) + 1
+
+def levelOrder(root):
+    q = Queue()
+    q.put(root)
+    while not q.empty():
+        node = q.get()
+        print(node.info, end=" ")
+        if node.left is not None:
+            q.put(node.left)
+        if node.right is not None:
+            q.put(node.right)
+
 
 if __name__ == '__main__':
 
