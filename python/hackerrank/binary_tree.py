@@ -89,6 +89,7 @@ def height(root):
 
         return max(l_height, r_height) + 1
 
+
 def levelOrder(root):
     q = Queue()
     q.put(root)
@@ -101,11 +102,38 @@ def levelOrder(root):
             q.put(node.right)
 
 
+def topView(root):
+    temp_dct = {}
+
+    def collect_node_info(node, height, hd, m):
+
+        if node is None:
+            return
+
+        if hd not in m:
+            m[hd] = (node.info, height)
+        else:
+            p = m[hd]
+
+            if p[1] > height:
+                m[hd] = (node.info, height)
+
+        collect_node_info(node.left, height+1, hd-1, m)
+        collect_node_info(node.right, height + 1, hd + 1, m)
+
+    collect_node_info(root, 0, 0, temp_dct)
+
+    for i in sorted(temp_dct.keys()):
+        print(temp_dct[i][0], end=" ")
+
+
 if __name__ == '__main__':
 
     tree = BinarySearchTree()
 
-    for i in range(3):
+    for i in range(6):
         tree.create(i)
 
-    print(height(tree.root))
+    # print(height(tree.root))
+
+    topView(tree.root)
