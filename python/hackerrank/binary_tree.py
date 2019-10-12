@@ -118,7 +118,7 @@ def topView(root):
             if p[1] > height:
                 m[hd] = (node.info, height)
 
-        collect_node_info(node.left, height+1, hd-1, m)
+        collect_node_info(node.left, height + 1, hd - 1, m)
         collect_node_info(node.right, height + 1, hd + 1, m)
 
     collect_node_info(root, 0, 0, temp_dct)
@@ -154,6 +154,31 @@ class BinarySearchTree2:
             lk_node.left = Node(info=val)
 
 
+def lca_rec(root, v1, v2):
+    if root is None:
+        return
+
+    if root.info > v1 and root.info > v2:
+        return lca_rec(root.left, v1, v2)
+
+    if root.info < v1 and root.info < v2:
+        return lca_rec(root.rigth, v1, v2)
+
+    return root
+
+
+def lca_iter(root, v1, v2):
+    current = root
+    while (current.info != v1 and current.info != v2) and not(current.info > v1 and current.info < v2 or current.info < v1 and current.info > v2):
+        if v1 < current.info and v2 < current.info:
+            current = current.left
+
+        if v1 > current.info and v2 > current.info:
+            current = current.right
+
+    return current
+
+
 if __name__ == '__main__':
 
     tree = BinarySearchTree()
@@ -164,6 +189,7 @@ if __name__ == '__main__':
     # print(height(tree.root))
 
     # topView(tree.root)
+    lca_iter(tree.root, 4, 1)
 
     arr = [1, 5, 2, 8, 4, 1, 9]
     tree = BinarySearchTree2()
