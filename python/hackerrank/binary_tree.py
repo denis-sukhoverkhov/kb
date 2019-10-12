@@ -127,6 +127,33 @@ def topView(root):
         print(temp_dct[i][0], end=" ")
 
 
+class BinarySearchTree2:
+    def __init__(self):
+        self.root = None
+
+    def insert(self, val):
+
+        if self.root is None:
+            self.root = Node(info=val)
+            return self.root
+
+        current = self.root
+        lk_node = self.root
+        while current:
+
+            if val >= current.info:
+                lk_node = current
+                current = current.right
+            else:
+                lk_node = current
+                current = current.left
+
+        if val >= lk_node.info:
+            lk_node.right = Node(info=val)
+        else:
+            lk_node.left = Node(info=val)
+
+
 if __name__ == '__main__':
 
     tree = BinarySearchTree()
@@ -136,4 +163,11 @@ if __name__ == '__main__':
 
     # print(height(tree.root))
 
-    topView(tree.root)
+    # topView(tree.root)
+
+    arr = [1, 5, 2, 8, 4, 1, 9]
+    tree = BinarySearchTree2()
+    for i in range(len(arr)):
+        tree.insert(arr[i])
+
+    pass
