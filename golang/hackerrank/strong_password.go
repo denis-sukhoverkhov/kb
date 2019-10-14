@@ -5,10 +5,6 @@ import "fmt"
 func minimumNumber(n int32, password string) int32 {
 	number_problems := int32(0)
 
-	//if len(password) < 6 {
-	//	number_problems++
-	//}
-
 	if !exist_level_protect(password, "0123456789") {
 		number_problems++
 	}
@@ -43,7 +39,7 @@ func exist_level_protect(source string, level string) bool {
 }
 
 func main() {
-	//fmt.Println(minimumNumber(11, "#HackerRank"))
+	fmt.Println(minimumNumber(11, "#HackerRank"))
 	fmt.Println(minimumNumber(11, "Ab1"))
 	fmt.Println(minimumNumber(11, "E!%Z@"))
 }
