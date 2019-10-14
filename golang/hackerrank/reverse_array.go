@@ -10,7 +10,16 @@ func reverseArray(a []int32) []int32 {
 	return new_arr
 }
 
+func reverseString(s string) string {
+	if len(s) == 0 {
+		return ""
+	}
+	n := len(s) - 1
+	return string(s[n]) + reverseString(s[:n])
+}
+
 func main() {
 	arr := []int32{1, 4, 3, 2}
 	fmt.Println(reverseArray(arr))
+	fmt.Println(reverseString("cppstudio"))
 }
