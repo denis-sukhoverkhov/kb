@@ -18,5 +18,5 @@
 15. git checkout -b style - создание новой ветки и переключение на нее
 16. git branch style - созданеи ветки
 17. git branch style - переключение на ветку
-
+18. git merge origin master
 
