@@ -20,4 +20,5 @@
 17. git branch style - переключение на ветку
 18. git merge origin master
 19. git rebase
+20. test commit
 
