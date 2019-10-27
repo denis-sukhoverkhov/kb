@@ -19,4 +19,4 @@
 16. git branch style - созданеи ветки
 17. git branch style - переключение на ветку
 18. git merge origin master
-
+19. git rebase
