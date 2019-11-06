@@ -8,9 +8,6 @@ def fast_power(base, power):
     return p
 
 
-print(fast_power(5, 17))
-
-
 # быстрое умножение итеративно
 def fast_power_iter(base, power):
     result = 1
@@ -24,4 +21,6 @@ def fast_power_iter(base, power):
     return result
 
 
-print(fast_power_iter(5, 17))
+if __name__ == '__main__':
+    # print(fast_power(5, 17))
+    print(fast_power_iter(5, 17))
