@@ -14,9 +14,6 @@ def fib(number):
         a, b = b, a + b
 
 
-print(list(fib(10)))
-
-
 def fib_iter(number):
     """
     Итеративный ряд фибоначчи
@@ -30,9 +27,6 @@ def fib_iter(number):
     return row
 
 
-print(fib_iter(10))
-
-
 def fib_rec(number):
     """
     Рекурсивное вычисление числа фибоначчи
@@ -44,4 +38,8 @@ def fib_rec(number):
     else:
         return fib_rec(number - 1) + fib_rec(number - 2)
 
-print(fib_rec(10))
+
+if __name__ == '__main__':
+    print(fib_rec(10))
+    print(fib_iter(10))
+    print(list(fib(1200)))
