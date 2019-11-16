@@ -1,9 +1,7 @@
 package main
 
-import (
-	"./algorithms"
-	"fmt"
-)
+import "fmt"
+import "./algorithms/sort"
 
 func main() {
 	//fmt.Println(algorithms.FactorialRec(10))
@@ -37,6 +35,9 @@ func main() {
 	//var d sandbox.Direction = sandbox.North
 	//fmt.Print(d)
 
-	fmt.Println(algorithms.FibIter(5))
-	fmt.Println(algorithms.FibIter2(1200))
+	//fmt.Println(algorithms.FibIter(5))
+	//fmt.Println(algorithms.FibIter2(1200))
+	arr := []int32{12, 11, 13, 5, 6}
+	sort.InsertionSort(arr)
+	fmt.Println(arr)
 }
