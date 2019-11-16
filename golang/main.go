@@ -37,7 +37,12 @@ func main() {
 
 	//fmt.Println(algorithms.FibIter(5))
 	//fmt.Println(algorithms.FibIter2(1200))
-	arr := []int32{12, 11, 13, 5, 6}
-	sort.InsertionSort(arr)
+
+	//arr := []int32{12, 11, 13, 5, 6}
+	//sort.InsertionSort(arr)
+	//fmt.Println(arr)
+
+	arr := []int32{12, 34, 54, 2, 3, 17, 20, 100, 16, 45, 23, 656, 3, 6, 7, 0}
+	sort.ShellSort(arr)
 	fmt.Println(arr)
 }
