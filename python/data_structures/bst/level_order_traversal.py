@@ -39,10 +39,11 @@ class Solution:
         print(*values, sep=' ')
 
 
-T = int(input())
-myTree = Solution()
-root = None
-for i in range(T):
-    data = int(input())
-    root = myTree.insert(root, data)
-myTree.levelOrder(root)
+if __name__ == '__main__':
+    T = int(input())
+    myTree = Solution()
+    root = None
+    for i in range(T):
+        data = int(input())
+        root = myTree.insert(root, data)
+    myTree.levelOrder(root)

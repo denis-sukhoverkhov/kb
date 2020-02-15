@@ -24,11 +24,12 @@ class Solution:
         return 1 + max(self.getHeight(root.right), self.getHeight(root.left))
 
 
-T = int(input())
-myTree = Solution()
-root = None
-for i in range(T):
-    data = int(input())
-    root = myTree.insert(root, data)
-height = myTree.getHeight(root)
-print(height)
+if __name__ == '__main__':
+    T = int(input())
+    myTree = Solution()
+    root = None
+    for i in range(T):
+        data = int(input())
+        root = myTree.insert(root, data)
+    height = myTree.getHeight(root)
+    print(height)
