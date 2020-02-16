@@ -44,17 +44,55 @@ def pre_order(head: Optional[Node]):
     pre_order(head.right)
 
 
+def in_order(head: Optional[Node]):
+    """Центрированный обход дерева(сортровка по возрастанию)"""
+    if head is None:
+        return None
+
+    in_order(head.left)
+    print(head.value, end=" ")  # sort
+    in_order(head.right)
+
+
+def in_order2(head: Optional[Node]):
+    """Центрированный обход дерева(сортировка по убыванию)"""
+    if head is None:
+        return None
+
+    in_order2(head.right)
+    print(head.value, end=" ")  # sort
+    in_order2(head.left)
+
+
+def post_order(head: Optional[Node]):
+    """Обратный обход дерева(от листьев к корневым элементам)"""
+    if head is None:
+        return
+
+    post_order(head.right)
+    post_order(head.left)
+    print(head.value, end=" ")
+
+
 if __name__ == '__main__':
     root = None
 
-    lst = [83, 75, 53, 10, 95, 83, 29, 48, 7, 35, 66, 45, 78, 24, 35, 44, 3, 99, 50, 92, 56, 42, 56, 84, 15, 89, 46, 56,
-           96, 65, 63, 70, 8, 21, 62, 59, 26, 75, 54, 57, 70, 28, 87, 79, 37, 25, 23, 91, 67, 90, 27, 77, 93, 47, 29,
-           15, 84, 66, 89, 56, 94, 20, 67, 81, 89, 55, 35, 59, 13, 70, 4]
+    lst = [50, 17, 76, 9, 23, 54, 14, 19, 72, 12, 67]
 
     for i in lst:
         root = insert(root, i)
 
     node = search(root, 95)
-    print(node.value)
+    print(node)
 
+    print("pre_order: ", end="")
     pre_order(root)
+
+    print("\nin_order: ", end="")
+    in_order(root)
+
+    print("\nin_order2: ", end="")
+    in_order2(root)
+
+    print("\npost_order: ", end="")
+    post_order(root)
