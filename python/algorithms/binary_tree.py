@@ -34,6 +34,42 @@ def search(head: Optional[Node], value):
         return search(head.right, value)
 
 
+def min_value_node(head: Optional[Node]):
+    cur = head
+
+    while cur.left is not None:
+        cur = cur.left
+    return cur
+
+
+def delete(head: Optional[Node], value):
+
+    if head is None:
+        return head
+
+    if value < head.value:
+        head.left = delete(head.left, value)
+    elif value > head.value:
+        head.right = delete(head.right, value)
+    else:
+        if head.ct_equal_elements > 1:
+            head.ct_equal_elements -= 1
+            return head
+
+        if head.left is None:
+            temp = head.right
+            return temp
+        elif head.right is None:
+            temp = head.left
+            return temp
+
+        temp = min_value_node(head.right)
+        head.value = temp.value
+        head.right = delete(head.right, temp.value)
+
+    return head
+
+
 def pre_order(head: Optional[Node]):
     """Прямой обход дерева"""
     if head is None:
@@ -77,7 +113,7 @@ def post_order(head: Optional[Node]):
 if __name__ == '__main__':
     root = None
 
-    lst = [50, 17, 76, 9, 23, 54, 14, 19, 72, 12, 67]
+    lst = [50, 17, 76, 9, 23, 54, 14, 19, 72, 12, 67, 54]
 
     for i in lst:
         root = insert(root, i)
@@ -96,3 +132,8 @@ if __name__ == '__main__':
 
     print("\npost_order: ", end="")
     post_order(root)
+
+    root = delete(root, 54)
+
+    print("\nin_order: ", end="")
+    in_order(root)
