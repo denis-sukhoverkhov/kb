@@ -1,3 +1,5 @@
+from python.algorithms.binary_tree import min_value_node, in_order
+
 
 class Node:
     def __init__(self, value: int, left = None, right = None, height: int = 1):
@@ -73,6 +75,46 @@ def insert(root: Node, key: int):
     return root
 
 
+def delete(root: Node, key):
+    if root is None:
+        return root
+    elif key < root.value:
+        root.left = delete(root.left, key)
+    elif key > root.value:
+        root.right = delete(root.right, key)
+    else:
+        if root.left is None:
+            return root.right
+        elif root.right is None:
+            return root.left
+
+        temp = min_value_node(root.right)
+        root.value = temp.value
+        root.right = delete(root.right, temp.value)
+
+    if root is None:
+        return root
+
+    root.height = 1 + max(get_height(root.left), get_height(root.right))
+
+    balance = get_balance(root)
+    if balance > 1 and key > root.left.value:
+        root.left = left_rotate(root.left)
+        return right_rotate(root)
+
+    if balance > 1 and key < root.left.value:
+        return right_rotate(root)
+
+    if balance < -1 and key < root.right.value:
+        root.right = right_rotate(root.right)
+        return left_rotate(root)
+
+    if balance < -1 and key > root.right.value:
+        return left_rotate(root)
+
+    return root
+
+
 if __name__ == "__main__":
     root = None
 
@@ -80,3 +122,8 @@ if __name__ == "__main__":
 
     for i in lst:
         root = insert(root, i)
+    in_order(root)
+    print('\n')
+
+    root = delete(root, 20)
+    in_order(root)
