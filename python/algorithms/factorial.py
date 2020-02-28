@@ -18,5 +18,6 @@ def fac(n):
     return res
 
 
-print(factorial(5))
-print(fac(5))
+if __name__ == "__main__":
+    print(factorial(5))
+    print(fac(26))
