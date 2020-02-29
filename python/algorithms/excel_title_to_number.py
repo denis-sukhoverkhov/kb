@@ -26,7 +26,7 @@ def convert_to_title(A: int):
 
 if __name__ == '__main__':
     print('A=> ', title_to_number('A'))
-    print('AA=> ', title_to_number('AA'))
+    print('ZZ=> ', title_to_number('ZZ'))
     print('AB=> ', title_to_number('AB'))
     print('ABC=> ', title_to_number('ABC'))
     print('AAA=> ', title_to_number('AAA'))
@@ -37,4 +37,5 @@ if __name__ == '__main__':
     print('18280=> ', convert_to_title(18280))
     print('25=> ', convert_to_title(25))
     print('26=> ', convert_to_title(26))
+    print('26=> ', convert_to_title(52))
     print('943566=> ', convert_to_title(943566))
