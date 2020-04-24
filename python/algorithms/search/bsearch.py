@@ -16,8 +16,32 @@ def bsearch(numbers, val):
         else:
             first = mid + 1
 
-    return 'index = {}'.format(index)
+    return index
 
 
-# print(bsearch([10, 45, 56, 57, 91, 92, 100, 500], 10))
-print(bsearch([10, 45, 56, 57, 91, 92, 100, 500], 100))
+def bsearch_in_matrix(A, B):
+    arr = []
+    for i in A:
+        arr += i
+
+    idx = bsearch(arr, B)
+
+    if idx is not None:
+        return 1
+    else:
+        return 0
+
+
+if __name__ == "__main__":
+    A = [[1, 3, 5, 7],
+         [10, 11, 16, 20],
+         [23, 30, 34, 50]]
+    B = 3
+    assert bsearch_in_matrix(A, B) == 1
+    assert bsearch_in_matrix(A, 99) == 0
+
+    A = [[1, ],
+         ]
+    B = 1
+
+    assert bsearch_in_matrix(A, B) == 1
