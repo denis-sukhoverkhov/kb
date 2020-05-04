@@ -25,15 +25,12 @@ class Solution:
             current = current.next
 
     def removeDuplicates(self, head):
-        # Write your code here
-        uniq = list()
         main_head = head
         prev_node = None
 
         while head:
             val = head.data
-            if val not in uniq:
-                uniq.append(val)
+            if not prev_node or val != prev_node.data:
                 prev_node = head
                 head = head.next
             else:
@@ -43,11 +40,11 @@ class Solution:
         return main_head
 
 
-mylist = Solution()
-T = int(input())
-head = None
-for i in range(T):
-    data = int(input())
-    head = mylist.insert(head, data)
-head = mylist.removeDuplicates(head)
-mylist.display(head)
+if __name__ == "__main__":
+    mylist = Solution()
+    head = None
+    lst = [1, 1, 2, 3]
+    for i in range(4):
+        head = mylist.insert(head, lst[i])
+    head = mylist.removeDuplicates(head)
+    mylist.display(head)
