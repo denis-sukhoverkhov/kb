@@ -1,4 +1,8 @@
+Полезные ссылки:
 
+[SQL COMMANDS](https://www.codecademy.com/articles/sql-commands)
+[Разгоняем бэкап. Лекция Яндекса](https://habr.com/ru/company/yandex/blog/415817/)
+[Wal-g](https://habr.com/ru/post/486188/)
 
 1) Какие знаешь свойства транзакций в PostgreSql?
 - Atomicity (Атомарность) - Свойство транзакции, которое заключается в том, что в результате транзакции все её операции 
@@ -108,5 +112,3 @@ https://postgrespro.ru/docs/postgrespro/9.5/queries-with
    должны соответствовать значениям в некоторой строке другой таблицы. Это называется ссылочной 
    целостностью двух связанных таблиц.
 https://postgrespro.ru/docs/postgresql/9.5/ddl-constraints
-   
-6) 
