@@ -3,6 +3,8 @@
 [SQL COMMANDS](https://www.codecademy.com/articles/sql-commands)
 [Разгоняем бэкап. Лекция Яндекса](https://habr.com/ru/company/yandex/blog/415817/)
 [Wal-g](https://habr.com/ru/post/486188/)
+[MVCC-3. Версии строк](https://habr.com/ru/company/postgrespro/blog/445820/)
+[MVCC-6. Очистка](https://habr.com/ru/company/postgrespro/blog/452320/)
 
 1) Какие знаешь свойства транзакций в PostgreSql?
 - Atomicity (Атомарность) - Свойство транзакции, которое заключается в том, что в результате транзакции все её операции 
@@ -43,6 +45,8 @@ https://postgrespro.ru/docs/postgrespro/9.5/mvcc-intro
 MVCC, отходя от методик блокирования, принятых в традиционных СУБД, снижает уровень конфликтов 
 блокировок и таким образом обеспечивает более высокую производительность 
 в многопользовательской среде.
+
+столбцы xmin, xmax
 
 Основное преимущество использования модели MVCC по сравнению с блокированием заключается в том, 
 что блокировки MVCC, полученные для чтения данных, не конфликтуют с блокировками, полученными 
@@ -112,3 +116,38 @@ https://postgrespro.ru/docs/postgrespro/9.5/queries-with
    должны соответствовать значениям в некоторой строке другой таблицы. Это называется ссылочной 
    целостностью двух связанных таблиц.
 https://postgrespro.ru/docs/postgresql/9.5/ddl-constraints
+   
+6) Типы блокировок:
+    exclusive
+    shared lock
+   
+```postgresql
+-- Данные по блокировкам
+select * from pg_locks;
+
+--пид процесса
+select pg_backend_pid();
+--получить список пидов которые залочили переданый пид
+select pg_blocking_pids(123);
+```
+
+   
+PSQL commands
+```shell
+\set AUTOCOMMIT off
+\echo :AUTOCOMMIT
+```
+
+### get curent transaction id
+```shell
+select txid_current();
+```
+
+```shell
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ; 
+```
+
+```shell
+VACUUM VERBOSE test;
+```
+
