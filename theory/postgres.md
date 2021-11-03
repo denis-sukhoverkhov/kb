@@ -5,6 +5,8 @@
 [Wal-g](https://habr.com/ru/post/486188/)
 [MVCC-3. Версии строк](https://habr.com/ru/company/postgrespro/blog/445820/)
 [MVCC-6. Очистка](https://habr.com/ru/company/postgrespro/blog/452320/)
+[PostgreSQL: практические примеры оптимизации SQL-запросов](https://www.youtube.com/watch?v=dm_oid1HVfQ&ab_channel=HighLoadChannel)
+[Влияние Transparent Huge Pages на производительность системы](https://habr.com/ru/company/tinkoff/blog/446342/)
 
 1) Какие знаешь свойства транзакций в PostgreSql?
 - Atomicity (Атомарность) - Свойство транзакции, которое заключается в том, что в результате транзакции все её операции 
@@ -82,6 +84,11 @@ https://postgrespro.ru/docs/postgresql/9.6/indexes-types
    чтобы грохотать словарь данных и т. д.
 
 Суть в том, что все сводится к вашему варианту использования. Если у вас есть важные запросы, которые вы часто выполняете и которые можно улучшить с помощью этого индекса - дерзайте. Если вы запускаете этот запрос один раз в синюю луну, вы, вероятно, не захотите замедлять все ваши инструкции INSERT.
+
+```postgresql
+--типы индексов которые поддерживает ваша версия PG
+select amname from pg_am;
+```
 
 3) 
 http://putham.com/post/2/What+is+DDL,+DML,+DCL+and+TCL+in+sql+,+oracle+,+postgresql?
