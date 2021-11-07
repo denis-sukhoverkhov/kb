@@ -1,16 +1,8 @@
-Полезные ссылки:
-
-[SQL COMMANDS](https://www.codecademy.com/articles/sql-commands)
-[Разгоняем бэкап. Лекция Яндекса](https://habr.com/ru/company/yandex/blog/415817/)
-[Wal-g](https://habr.com/ru/post/486188/)
-[MVCC-3. Версии строк](https://habr.com/ru/company/postgrespro/blog/445820/)
-[MVCC-6. Очистка](https://habr.com/ru/company/postgrespro/blog/452320/)
-[PostgreSQL: практические примеры оптимизации SQL-запросов](https://www.youtube.com/watch?v=dm_oid1HVfQ&ab_channel=HighLoadChannel)
-[Влияние Transparent Huge Pages на производительность системы](https://habr.com/ru/company/tinkoff/blog/446342/)
+## Основные темы PostgreSql
 
 1) Cвойства транзакций в PostgreSql
 
-Этот набор свойств транзакций в базе данных должен гарантировать корректность операций при параллельном выполнении, а также в случае ошибок, при отключении питания и т. п.
+    Этот набор свойств транзакций в базе данных должен гарантировать корректность операций при параллельном выполнении, а также в случае ошибок, при отключении питания и т. п.
 
     - Atomicity (Атомарность) - Свойство транзакции, которое заключается в том, что в результате транзакции все её операции выполняются вместе, либо не выполняются совсем. Кроме того, частичные изменения исключены в случае сбоя системы в процессе выполнения транзакции.
 
@@ -157,3 +149,13 @@ SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 VACUUM VERBOSE test;
 ```
 
+
+## Полезные ссылки:
+
+1. [SQL COMMANDS](https://www.codecademy.com/articles/sql-commands)
+2. [Разгоняем бэкап. Лекция Яндекса](https://habr.com/ru/company/yandex/blog/415817/)
+3. [Wal-g](https://habr.com/ru/post/486188/)
+4. [MVCC-3. Версии строк](https://habr.com/ru/company/postgrespro/blog/445820/)
+5. [MVCC-6. Очистка](https://habr.com/ru/company/postgrespro/blog/452320/)
+6. [PostgreSQL: практические примеры оптимизации SQL-запросов](https://www.youtube.com/watch?v=dm_oid1HVfQ&ab_channel=HighLoadChannel)
+7. [Влияние Transparent Huge Pages на производительность системы](https://habr.com/ru/company/tinkoff/blog/446342/)
