@@ -20,11 +20,12 @@ class OnlyOne:
         return getattr(self.instance, name)
 
 
-x = OnlyOne('sausage')
-print(x.val)
-y = OnlyOne('eggs')
-print(y.val)
-z = OnlyOne('spam')
-print(z)
-print(x)
-print(y)
+if __name__ == "__main__":
+    x = OnlyOne('sausage')
+    print(x.val)
+    y = OnlyOne('eggs')
+    print(y.val)
+    z = OnlyOne('spam')
+    print(z)
+    print(x)
+    print(y)
