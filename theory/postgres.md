@@ -159,3 +159,4 @@ VACUUM VERBOSE test;
 5. [MVCC-6. Очистка](https://habr.com/ru/company/postgrespro/blog/452320/)
 6. [PostgreSQL: практические примеры оптимизации SQL-запросов](https://www.youtube.com/watch?v=dm_oid1HVfQ&ab_channel=HighLoadChannel)
 7. [Влияние Transparent Huge Pages на производительность системы](https://habr.com/ru/company/tinkoff/blog/446342/)
+8. [Safe and unsafe operations for high volume PostgreSQL](https://leopard.in.ua/2016/09/20/safe-and-unsafe-operations-postgresql#.YaD8Nb2A44g)
