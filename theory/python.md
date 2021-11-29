@@ -321,3 +321,8 @@ eval()
 # Если объект определяет сразу и __get__, и __set__, то он считается дескриптором данных (англ. data descriptor).
 # Дескрипторы, которые определили только __get__ называются дескрипторами не данных (англ. non-data descriptors).
 # Их называются так, потому что они используют для методов, но другие способы их применения также возможны.
+
+
+## Полезные ссылки:
+
+[The best Docker base image for your Python application](https://pythonspeed.com/articles/base-image-python-docker-images/)
