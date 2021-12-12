@@ -24,7 +24,7 @@ class Solution:
         return 1 + max(self.getHeight(root.right), self.getHeight(root.left))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     T = int(input())
     myTree = Solution()
     root = None

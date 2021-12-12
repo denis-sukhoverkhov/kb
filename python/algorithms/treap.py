@@ -2,7 +2,7 @@ from random import random
 
 
 class Node:
-    def __init__(self, x, y, l = None, r = None):
+    def __init__(self, x, y, l=None, r=None):
         self.x = x
         self.y = y
         self.left = l
@@ -38,13 +38,16 @@ def split(x0: int, t: Node) -> (Node, Node):
 
 
 def add(t1: Node, n: Node) -> Node:
-    a, b = split(n.x, t1,)
+    a, b = split(
+        n.x,
+        t1,
+    )
     return merge(merge(a, n), b)
 
 
 def delete(t: Node, x0: int) -> Node:
     a, b = split(x0, t)
-    a1, _ = split(x0-1, a)
+    a1, _ = split(x0 - 1, a)
     return merge(a1, b)
 
 

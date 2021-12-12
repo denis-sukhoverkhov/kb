@@ -6,7 +6,7 @@ def subsetsUtil(A, subset, idx, res):
         subset.append(A[i])
 
         res.append(copy.copy(subset))
-        subsetsUtil(A, subset, i+1, res)
+        subsetsUtil(A, subset, i + 1, res)
 
         subset.pop(-1)
 

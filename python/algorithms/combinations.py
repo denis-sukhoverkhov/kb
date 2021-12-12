@@ -5,9 +5,9 @@ def n_length_combo(lst, n):
     l = []
     for i in range(0, len(lst)):
         m = lst[i]
-        remLst = lst[i + 1:]
+        remLst = lst[i + 1 :]
 
-        for p in n_length_combo(remLst, n-1):
+        for p in n_length_combo(remLst, n - 1):
             l.append([m] + p)
 
     return l

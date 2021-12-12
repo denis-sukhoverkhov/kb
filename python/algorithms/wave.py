@@ -1,5 +1,3 @@
-
-
 def wave(A):
 
     A.sort()
@@ -23,5 +21,5 @@ if __name__ == "__main__":
     A = [1, 2, 3, 4]
     print(wave(A))
 
-    A = [ 5, 1, 3, 2, 4 ]
+    A = [5, 1, 3, 2, 4]
     print(wave(A))

@@ -7,7 +7,7 @@ def min_xor_value(A):
     min_x = int(sys.float_info.max)
 
     for i in range(len(A) - 1):
-        val = A[i] ^ A[i+1]
+        val = A[i] ^ A[i + 1]
         min_x = min(val, min_x)
 
     return min_x

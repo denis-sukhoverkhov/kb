@@ -3,7 +3,7 @@ class Solution:
     # @param A : tuple of integers
     # @return an integer
     def lis(self, A):
-        res = [1]*len(A)
+        res = [1] * len(A)
         for i in range(1, len(A)):
             for j in range(0, i):
                 if A[i] > A[j] and res[i] < res[j] + 1:

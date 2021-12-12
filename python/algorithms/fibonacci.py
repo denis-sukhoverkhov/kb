@@ -39,7 +39,7 @@ def fib_rec(number):
         return fib_rec(number - 1) + fib_rec(number - 2)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(fib_rec(10))
     print(fib_iter(10))
     print(list(fib(1200)))

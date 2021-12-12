@@ -11,7 +11,9 @@ class Solution:
             if A[i] in mapka:
                 mapka[A[i]].append(A[i] - B)
             else:
-                mapka[A[i]] = [A[i] - B, ]
+                mapka[A[i]] = [
+                    A[i] - B,
+                ]
 
         for v in mapka.keys():
             val = mapka[v][0]

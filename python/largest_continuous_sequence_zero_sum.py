@@ -10,10 +10,10 @@ class Solution:
             sum += A[i]
 
             if sum == 0:
-                res.append(A[:i + 1])
+                res.append(A[: i + 1])
 
             if sum in hm:
-                res.append(A[hm[sum] + 1:i + 1])
+                res.append(A[hm[sum] + 1 : i + 1])
             else:
                 hm[sum] = i
 

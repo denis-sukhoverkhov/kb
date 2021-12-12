@@ -20,7 +20,7 @@ def fountainActivation(a):
             ct_fountans.append(summ_fountans)
             continue
 
-        for j in range(i+1, len_of_garden):
+        for j in range(i + 1, len_of_garden):
             ft = coverage_list[j]
             if from_v > ft[0] >= 1:
                 from_v = ft[0]

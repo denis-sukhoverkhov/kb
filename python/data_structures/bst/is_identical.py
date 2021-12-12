@@ -40,7 +40,6 @@ class Solution:
 if __name__ == "__main__":
     s = Solution()
 
-
     A = None
     for i in [1, 2, 3]:
         A = s.insert(A, i)

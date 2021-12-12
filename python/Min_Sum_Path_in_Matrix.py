@@ -24,23 +24,38 @@ class Solution:
         res = [[0] * columns for _ in range(rows)]
         res[0][0] = A[0][0]
         for i in range(1, columns):
-            res[0][i] = res[0][i-1] + A[0][i]
+            res[0][i] = res[0][i - 1] + A[0][i]
 
         for i in range(1, rows):
-            res[i][0] = res[i-1][0] + A[i][0]
+            res[i][0] = res[i - 1][0] + A[i][0]
 
         for i in range(1, rows):
             for j in range(1, columns):
-                res[i][j] = min(A[i][j] + res[i][j - 1], A[i][j] + res[i-1][j])
+                res[i][j] = min(A[i][j] + res[i][j - 1], A[i][j] + res[i - 1][j])
 
-        return res[rows-1][columns-1]
+        return res[rows - 1][columns - 1]
+
 
 if __name__ == "__main__":
     s = Solution()
 
-    A = [[1, 3, 2, ],
-         [4, 3, 1, ],
-         [5, 6, 1, ], ]
+    A = [
+        [
+            1,
+            3,
+            2,
+        ],
+        [
+            4,
+            3,
+            1,
+        ],
+        [
+            5,
+            6,
+            1,
+        ],
+    ]
 
     res = s.minPathSum(A)
     assert res == 8

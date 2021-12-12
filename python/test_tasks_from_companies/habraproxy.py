@@ -1,20 +1,21 @@
+import re
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.request import urlopen
+
 from bs4 import BeautifulSoup, Comment
-import re
 
 
 class HabraHandler(BaseHTTPRequestHandler):
-    HABRA_DOMAIN = 'habrahabr.ru'
+    HABRA_DOMAIN = "habrahabr.ru"
     TM_SYMBOL = "\u2122"
 
     def do_GET(self):
         self.send_response(200)
-        self.send_header('Content-type', 'text/html; charset=UTF-8')
+        self.send_header("Content-type", "text/html; charset=UTF-8")
         self.end_headers()
 
         html = self.get_habra_page()
-        if 'woff' not in self.path:
+        if "woff" not in self.path:
             html = self.get_tm_page(html)
             html = self.sub_anchors(html)
         self.wfile.write(html)
@@ -52,9 +53,9 @@ class HabraHandler(BaseHTTPRequestHandler):
         current_url = "https://{0}".format(self.HABRA_DOMAIN)
 
         soup = BeautifulSoup(html)
-        for a in soup.findAll('a'):
+        for a in soup.findAll("a"):
             try:
-                a['href'] = a['href'].replace(current_url, new_url)
+                a["href"] = a["href"].replace(current_url, new_url)
             except KeyError:
                 pass
 
@@ -68,19 +69,22 @@ class HabraHandler(BaseHTTPRequestHandler):
         :param element:
         :return:
         """
-        if element.parent.name in ['style', 'script', '[document]', 'head', 'title'] or element == '\n' or \
-                isinstance(element, Comment):
+        if (
+            element.parent.name in ["style", "script", "[document]", "head", "title"]
+            or element == "\n"
+            or isinstance(element, Comment)
+        ):
             return False
 
         return True
 
 
-HOST_NAME = '127.0.0.1'
+HOST_NAME = "127.0.0.1"
 PORT_NUMBER = 8070
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     httpd = HTTPServer((HOST_NAME, PORT_NUMBER), HabraHandler)
-    print('Starting server.')
+    print("Starting server.")
 
     try:
         httpd.serve_forever()

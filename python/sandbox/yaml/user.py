@@ -7,14 +7,14 @@ class User:
         self.age = age
 
 
-print('Dump object')
-with open('config.yaml', 'w') as f:
-    user1 = User('Sergo', 14)
+print("Dump object")
+with open("config.yaml", "w") as f:
+    user1 = User("Sergo", 14)
     yaml.dump(user1, f)
 
 
-print('Load object')
-with open('config.yaml', 'r') as f:
+print("Load object")
+with open("config.yaml", "r") as f:
     result = yaml.load(f)
 
 print(result)

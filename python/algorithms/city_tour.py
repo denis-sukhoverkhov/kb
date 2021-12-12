@@ -3,7 +3,7 @@ from typing import List
 
 
 def solve(A: int, B: List[int]):
-    all_cities = set([i for i in range(1, A+1)])
+    all_cities = set([i for i in range(1, A + 1)])
     visited = [False] * len(all_cities)
     for i in B:
         visited[i] = True
@@ -12,7 +12,7 @@ def solve(A: int, B: List[int]):
     for n in range(1, len(not_visited) + 1):
         res *= n
 
-    return res % (10**9+7)
+    return res % (10 ** 9 + 7)
 
 
 if __name__ == "__main__":

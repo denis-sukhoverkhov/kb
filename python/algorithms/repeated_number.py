@@ -1,5 +1,3 @@
-
-
 def repeated_number(A):
     m = dict()
 
@@ -12,6 +10,6 @@ def repeated_number(A):
     return -1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     A = [3, 4, 1, 4, 1]
     print(repeated_number(A))

@@ -6,7 +6,7 @@ def remove_element(A, B):
             j += 1
             A[j] = A[i]
 
-    for _ in range(len(A)-(j+1)):
+    for _ in range(len(A) - (j + 1)):
         A.pop()
     return len(A)
 

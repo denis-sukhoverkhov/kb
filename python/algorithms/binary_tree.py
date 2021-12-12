@@ -2,7 +2,6 @@ from typing import Optional
 
 
 class Node:
-
     def __init__(self, value, left=None, right=None):
         self.value = value
         self.left = left
@@ -110,7 +109,7 @@ def post_order(head: Optional[Node]):
     print(head.value, end=" ")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     root = None
 
     lst = [50, 17, 76, 9, 23, 54, 14, 19, 72, 12, 67, 54]

@@ -1,4 +1,3 @@
-
 def zeros_in_fact(n):
     """
     https://www.interviewbit.com/problems/trailing-zeros-in-factorial/

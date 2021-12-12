@@ -62,15 +62,10 @@ def merge_k_sorted_arrays(arr: list):
             root.element = sys.maxsize
         replace_min(h_arr, root)
 
-    print(*result, sep=' ')
+    print(*result, sep=" ")
 
 
-if __name__ == '__main__':
-    arr = [
-        [2, 6, 12, 34],
-        [1, 9, 20, 1000],
-        [23, 34, 90, 2000]
-    ]
+if __name__ == "__main__":
+    arr = [[2, 6, 12, 34], [1, 9, 20, 1000], [23, 34, 90, 2000]]
 
     merge_k_sorted_arrays(arr)
-

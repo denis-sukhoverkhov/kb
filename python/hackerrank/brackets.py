@@ -1,9 +1,8 @@
-
 def correct(expr: str) -> str:
     brackets_dict = {
-        '[': ']',
-        '(': ')',
-        '{': '}',
+        "[": "]",
+        "(": ")",
+        "{": "}",
     }
 
     inverse_brackets_dict = {v: k for k, v in brackets_dict.items()}
@@ -13,11 +12,11 @@ def correct(expr: str) -> str:
     corrected_expression = []
     while pos < len(expr):
         s = expr[pos]
-        if s in ('[', '(', '{'):
+        if s in ("[", "(", "{"):
             stack.append(s)
             corrected_expression.append(s)
             pos += 1
-        elif s in (']', ')', '}'):
+        elif s in ("]", ")", "}"):
             if len(stack) > 0 and s != brackets_dict[stack[-1]]:
                 corrected_expression.append(brackets_dict[stack[-1]])
                 del stack[-1]
@@ -36,8 +35,8 @@ def correct(expr: str) -> str:
     return "".join(corrected_expression)
 
 
-assert correct('[(])') == '[()]()'
-assert correct('[{{}]{(})') == '[{{}}]{()}()'
-assert correct(')') == '()'
-assert correct('') == ''
-assert correct('((') == '(())'
+assert correct("[(])") == "[()]()"
+assert correct("[{{}]{(})") == "[{{}}]{()}()"
+assert correct(")") == "()"
+assert correct("") == ""
+assert correct("((") == "(())"

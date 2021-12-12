@@ -28,7 +28,7 @@ def print_pascal_triangle(A):
     return matrix
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_row(1))
     print(get_row(2))
     print(get_row(3))

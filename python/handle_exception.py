@@ -1,9 +1,9 @@
-import sys
 import asyncio
+import sys
 
 
 def handle_exception(exc_type, exc_value, exc_traceback):
-    print(f'2: {exc_value!r}')
+    print(f"2: {exc_value!r}")
 
 
 sys.excepthook = handle_exception
@@ -20,7 +20,7 @@ async def main():
         asyncio.create_task(f())
         await asyncio.sleep(0.1)
     except Exception as e:
-        print(f'2: {e!r}')
+        print(f"2: {e!r}")
 
 
 if __name__ == "__main__":

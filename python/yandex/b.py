@@ -14,7 +14,7 @@ else:
 
     bin_str = "".join(bin_arr)
 
-    parts = [i for i in bin_str.split('0') if i]
+    parts = [i for i in bin_str.split("0") if i]
 
     if not parts:
         print(0)

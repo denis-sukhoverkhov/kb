@@ -1,4 +1,3 @@
-
 # Driver code to test above
 arr = [12, 34, 54, 2, 3, 17, 20, 100, 16, 45, 23, 656, 3, 6, 7, 0]
 
@@ -24,6 +23,6 @@ def shell_sort(arr):
         gap //= 2
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     shell_sort(arr)
     print(arr)

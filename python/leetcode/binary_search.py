@@ -2,12 +2,18 @@ import random
 
 
 def generate_random_sorted_list(size=100, start=1, end=1000):
-    tmp = random.randint(start, end, )
+    tmp = random.randint(
+        start,
+        end,
+    )
 
     array = []
     for i in range(size):
         while tmp in array:
-            tmp = random.randint(start, end, )
+            tmp = random.randint(
+                start,
+                end,
+            )
 
         array.append(tmp)
 

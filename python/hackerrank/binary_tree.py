@@ -169,7 +169,9 @@ def lca_rec(root, v1, v2):
 
 def lca_iter(root, v1, v2):
     current = root
-    while (current.info != v1 and current.info != v2) and not(current.info > v1 and current.info < v2 or current.info < v1 and current.info > v2):
+    while (current.info != v1 and current.info != v2) and not (
+        current.info > v1 and current.info < v2 or current.info < v1 and current.info > v2
+    ):
         if v1 < current.info and v2 < current.info:
             current = current.left
 
@@ -179,7 +181,7 @@ def lca_iter(root, v1, v2):
     return current
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     tree = BinarySearchTree()
 

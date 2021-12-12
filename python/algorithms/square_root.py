@@ -11,7 +11,7 @@ def square_root(number):
         ans += 0.00001
         num_iterations += 1
 
-    return 'root = {}, iteration = {}'.format(ans, num_iterations)
+    return "root = {}, iteration = {}".format(ans, num_iterations)
 
 
 # квадратный корень - c применением бинарного поиска
@@ -31,7 +31,7 @@ def bsquare_root(number):
         guess = (low + high) / 2
         num_iterations += 1
 
-    return 'root = {}, iteration = {}'.format(guess, num_iterations)
+    return "root = {}, iteration = {}".format(guess, num_iterations)
 
 
 def root(A):
@@ -47,7 +47,7 @@ def root(A):
     while start <= end:
         mid = (start + end) // 2
 
-        if mid*mid == A:
+        if mid * mid == A:
             return mid
 
         if mid * mid > A:
@@ -57,7 +57,6 @@ def root(A):
             ans = mid
 
     return ans
-
 
 
 if __name__ == "__main__":

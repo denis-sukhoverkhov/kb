@@ -1,4 +1,3 @@
-
 def prime_sum(A):
     """
     https://www.interviewbit.com/problems/prime-sum/
@@ -15,9 +14,9 @@ def prime_sum(A):
         p += 1
 
     for p in range(2, A):
-        if prime[p] and prime[A-p]:
-            return [p, A-p]
+        if prime[p] and prime[A - p]:
+            return [p, A - p]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(prime_sum(16777214))

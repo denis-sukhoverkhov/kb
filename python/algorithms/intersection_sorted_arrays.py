@@ -1,4 +1,3 @@
-
 def intersect(A, B):
 
     i = j = 0

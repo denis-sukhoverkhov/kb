@@ -1,5 +1,4 @@
 class Btree:
-
     def __init__(self, degree):
         self.degree = degree
         self.root = None
@@ -25,7 +24,6 @@ class Btree:
 
 
 class BtreeNode:
-
     def __init__(self, degree: int, is_leaf: bool):
         self.degree = degree
         self.is_leaf = is_leaf
@@ -53,9 +51,9 @@ class BtreeNode:
                 idx -= 1
 
             if self.child_list[idx + 1].n == self.capacity:
-                self.split_child(idx+1, self.child_list[idx + 1])
+                self.split_child(idx + 1, self.child_list[idx + 1])
                 if self.keys[idx + 1] < k:
-                    idx+=1
+                    idx += 1
 
             self.child_list[idx + 1].insert_non_full(k)
 

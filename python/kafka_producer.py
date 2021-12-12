@@ -1,17 +1,15 @@
+import asyncio
 import json
 import os
 
 from aiokafka import AIOKafkaProducer
-import asyncio
-
 from dotenv import load_dotenv
 
 config = load_dotenv()  # take environment variables from .env.
 
 
 async def send_one():
-    producer = AIOKafkaProducer(
-        bootstrap_servers=os.getenv("BOOTSTRAP_SERVERS"))
+    producer = AIOKafkaProducer(bootstrap_servers=os.getenv("BOOTSTRAP_SERVERS"))
     # Get cluster layout and initial topic/partition leadership information
     await producer.start()
     try:

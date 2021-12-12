@@ -1,6 +1,5 @@
-from functools import wraps
-
 import time
+from functools import wraps
 
 
 def timeit(f):
@@ -17,7 +16,7 @@ def timeit(f):
 
 @timeit
 def my_func():
-    print('some')
+    print("some")
 
 
 my_func()

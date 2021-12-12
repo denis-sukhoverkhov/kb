@@ -2,7 +2,7 @@
 
 
 def is_palindrom(A):
-    alphabet = [chr(i) for i in range(ord('A'), ord('A') + 26)] + [chr(i) for i in range(ord('a'), ord('a') + 26)]
+    alphabet = [chr(i) for i in range(ord("A"), ord("A") + 26)] + [chr(i) for i in range(ord("a"), ord("a") + 26)]
     numbers = [str(i) for i in range(10)]
 
     str_alph = []

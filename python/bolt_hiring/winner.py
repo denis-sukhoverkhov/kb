@@ -1,25 +1,27 @@
-
 def winner(erica, bob):
     e_score = 0
     b_score = 0
-    for e, b, in zip(erica, bob):
+    for (
+        e,
+        b,
+    ) in zip(erica, bob):
         e_score += get_score_by_symbol(e)
         b_score += get_score_by_symbol(b)
 
     if e_score == b_score:
-        return 'Tie'
+        return "Tie"
     elif e_score > b_score:
-        return 'Erica'
+        return "Erica"
     else:
-        return 'Bob'
+        return "Bob"
 
 
 def get_score_by_symbol(s: str):
-    if s == 'E':
+    if s == "E":
         return 1
-    elif s == 'M':
+    elif s == "M":
         return 3
-    elif s == 'H':
+    elif s == "H":
         return 5
     else:
         raise Exception

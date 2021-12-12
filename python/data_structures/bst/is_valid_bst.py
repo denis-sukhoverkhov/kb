@@ -25,7 +25,9 @@ class Solution:
         if node.val < mini or node.val > maxi:
             return False
 
-        return self.util(node.left, mini=mini, maxi=node.val - 1) and self.util(node.right, mini=node.val + 1, maxi=maxi)
+        return self.util(node.left, mini=mini, maxi=node.val - 1) and self.util(
+            node.right, mini=node.val + 1, maxi=maxi
+        )
 
 
 if __name__ == "__main__":

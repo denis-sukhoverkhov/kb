@@ -42,7 +42,7 @@ def pow_interviewbit(x, n, d):
     return result
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(fast_power(5, 17))
     print(fast_power_iter(5, 17))
 

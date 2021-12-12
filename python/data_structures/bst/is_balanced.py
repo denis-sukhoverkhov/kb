@@ -52,7 +52,6 @@ if __name__ == "__main__":
 
     assert s.isBalanced(head) == 0
 
-
     head = None
     for i in [1, 2, 3]:
         head = s.insert(head, i)

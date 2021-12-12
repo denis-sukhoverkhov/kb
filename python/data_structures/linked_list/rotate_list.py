@@ -1,8 +1,7 @@
-
 class ListNode:
-   def __init__(self, x):
-       self.val = x
-       self.next = None
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
 
 class Solution:
@@ -35,7 +34,7 @@ class Solution:
         curr = A
         while cnt < k and curr:
             curr = curr.next
-            cnt+=1
+            cnt += 1
 
         if curr is None:
             return A
@@ -69,4 +68,3 @@ if __name__ == "__main__":
     s = Solution()
     res = s.rotateRight(first, 90)
     pass
-

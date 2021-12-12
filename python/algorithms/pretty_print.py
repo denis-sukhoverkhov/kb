@@ -6,7 +6,7 @@ def pretty_print(A):
     center = A - 1
     i, j = 0, 0
 
-    ln = A* 2 - 1
+    ln = A * 2 - 1
     res = [[0] * ln for _ in range(ln)]
     p = A
     while i != center and j != center:

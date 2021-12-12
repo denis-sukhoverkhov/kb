@@ -1,5 +1,3 @@
-
-
 class SinglyLinkedListNode:
     def __init__(self, node_data):
         self.data = node_data
@@ -19,6 +17,7 @@ def print_singly_linked_list(node, sep, fptr):
 
         if node:
             fptr.write(sep)
+
 
 def insertNodeAtHead(llist, data):
     if llist is None:
@@ -56,6 +55,7 @@ def mergeLists_rec(head1, head2):
         temp.next = mergeLists_rec(head1, head2.next)
 
     return temp
+
 
 def mergeLists_iter(head1, head2):
 
@@ -121,11 +121,16 @@ def has_cycle(head):
 
     return False
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
 
     llist1 = SinglyLinkedList()
 
-    arr = [3, 2, 1, ]
+    arr = [
+        3,
+        2,
+        1,
+    ]
     for i in arr:
         llist_head = insertNodeAtHead(llist1.head, i)
         llist1.head = llist_head
@@ -140,4 +145,3 @@ if __name__ == '__main__':
     pass
 
     print(findMergeNode(llist1.head, llist2.head))
-

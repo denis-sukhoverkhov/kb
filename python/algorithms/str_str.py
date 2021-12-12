@@ -10,13 +10,13 @@ def str_str(A, B):
     ln_b = len(B)
 
     for i in range(len(A)):
-        if A[i:i+ln_b] == B:
+        if A[i : i + ln_b] == B:
             return i
 
     return res_idx
 
 
 if __name__ == "__main__":
-    s = 'HelloWorld'
-    sb = 'World'
+    s = "HelloWorld"
+    sb = "World"
     print(str_str(s, sb))

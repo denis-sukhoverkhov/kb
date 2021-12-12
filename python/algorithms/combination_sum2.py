@@ -5,7 +5,7 @@ def comb_sum(lst, n):
     res = []
     for i in range(len(lst)):
         cur_val = lst[i]
-        rem = lst[i + 1:]
+        rem = lst[i + 1 :]
         if cur_val == n:
             res.append([cur_val])
             return res

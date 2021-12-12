@@ -1,9 +1,4 @@
-graph = {'A': ['B', 'C'],
-         'B': ['C', 'D'],
-         'C': ['D'],
-         'D': ['C'],
-         'E': ['F'],
-         'F': ['C']}
+graph = {"A": ["B", "C"], "B": ["C", "D"], "C": ["D"], "D": ["C"], "E": ["F"], "F": ["C"]}
 
 
 def find_shortest_path(graph, start, end, path=[]):
@@ -22,4 +17,4 @@ def find_shortest_path(graph, start, end, path=[]):
     return shortest
 
 
-print(find_shortest_path(graph, 'A', 'D'))
+print(find_shortest_path(graph, "A", "D"))

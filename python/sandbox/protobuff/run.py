@@ -1,7 +1,6 @@
 from addressbook_pb2 import Person
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     person = Person()
     person.id = 1234
     person.name = "John Doe"

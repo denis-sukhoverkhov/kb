@@ -1,8 +1,7 @@
-
 class ListNode:
-   def __init__(self, x):
-       self.val = x
-       self.next = None
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
 
 class Solution:
@@ -55,4 +54,3 @@ if __name__ == "__main__":
 
     s = Solution()
     s.mergeTwoLists(ll1, ll2)
-

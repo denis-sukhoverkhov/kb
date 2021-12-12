@@ -1,9 +1,8 @@
-
 def k_min_el(A, B):
 
     a = sorted(A)
 
-    return a[B-1]
+    return a[B - 1]
 
 
 if __name__ == "__main__":

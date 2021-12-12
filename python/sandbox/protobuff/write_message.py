@@ -1,7 +1,8 @@
 #! /usr/bin/python
 
-import addressbook_pb2
 import sys
+
+import addressbook_pb2
 
 
 # This function fills in a Person message based on user input.

@@ -1,5 +1,6 @@
 #  Бинарный поиск
 
+
 def bsearch(numbers, val):
     first = 0
     last = len(numbers) - 1
@@ -33,15 +34,16 @@ def bsearch_in_matrix(A, B):
 
 
 if __name__ == "__main__":
-    A = [[1, 3, 5, 7],
-         [10, 11, 16, 20],
-         [23, 30, 34, 50]]
+    A = [[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 50]]
     B = 3
     assert bsearch_in_matrix(A, B) == 1
     assert bsearch_in_matrix(A, 99) == 0
 
-    A = [[1, ],
-         ]
+    A = [
+        [
+            1,
+        ],
+    ]
     B = 1
 
     assert bsearch_in_matrix(A, B) == 1

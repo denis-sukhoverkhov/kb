@@ -1,4 +1,4 @@
-from typing import Dict, List, Iterator
+from typing import Dict, Iterator, List
 
 
 class TreeNode:
@@ -7,13 +7,19 @@ class TreeNode:
     children_ids: List[int]
     parent_id: int
 
-    def __init__(self, id, children_ids, ):
+    def __init__(
+        self,
+        id,
+        children_ids,
+    ):
         self.id = id
         self.children_ids = children_ids
 
 
 class Tree:
-    def __init__(self, ):
+    def __init__(
+        self,
+    ):
         self.nodes = {
             1: TreeNode(id=1, children_ids=[2, 4, 7]),
             2: TreeNode(id=2, children_ids=[5]),

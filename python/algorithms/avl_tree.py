@@ -1,8 +1,8 @@
-from python.algorithms.binary_tree import min_value_node, in_order
+from python.algorithms.binary_tree import in_order, min_value_node
 
 
 class Node:
-    def __init__(self, value: int, left = None, right = None, height: int = 1):
+    def __init__(self, value: int, left=None, right=None, height: int = 1):
         self.value = value
         self.left = left
         self.right = right
@@ -56,7 +56,7 @@ def insert(root: Node, key: int):
         root.right = insert(root.right, key)
 
     root.height = 1 + max(get_height(root.left), get_height(root.right))
-    
+
     balance = get_balance(root)
     if balance > 1 and key > root.left.value:
         root.left = left_rotate(root.left)
@@ -123,7 +123,7 @@ if __name__ == "__main__":
     for i in lst:
         root = insert(root, i)
     in_order(root)
-    print('\n')
+    print("\n")
 
     root = delete(root, 20)
     in_order(root)

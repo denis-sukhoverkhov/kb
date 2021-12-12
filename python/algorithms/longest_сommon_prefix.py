@@ -1,5 +1,6 @@
 # https://www.interviewbit.com/problems/longest-common-prefix/
 
+
 def longest_common_prefix(A):
 
     min_len_elem = A[0]
@@ -8,7 +9,7 @@ def longest_common_prefix(A):
         if len(min_len_elem) > len(i):
             min_len_elem = i
 
-    res = ''
+    res = ""
     idx = 0
     while idx < len(min_len_elem):
         prev_res = res
@@ -19,14 +20,14 @@ def longest_common_prefix(A):
         else:
             res += min_len_elem[idx]
 
-        idx +=1
+        idx += 1
         if prev_res == res:
             break
 
     return res
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     A = ["abcdefgh", "aefghijk", "abcefgh"]
     print(longest_common_prefix(A))
 

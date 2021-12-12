@@ -89,7 +89,11 @@ if __name__ == "__main__":
             cache.set(operations[ct + 1], operations[ct + 2])
             ct += 3
         else:
-            print(cache.get(operations[ct + 1], ))
+            print(
+                cache.get(
+                    operations[ct + 1],
+                )
+            )
             ct += 2
         op_counter += 1
 

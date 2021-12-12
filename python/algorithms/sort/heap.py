@@ -32,12 +32,15 @@ def heap_sort(arr):
         heapify(arr, 0, size)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     arr = [11, 6, 10, 1, 9, 15, 7, 8, 17, 5, 2]
     print(arr)
 
-    build_heap(arr, )
+    build_heap(
+        arr,
+    )
     print("build_heap", arr)
-    heap_sort(arr, )
+    heap_sort(
+        arr,
+    )
     print("heap_sort", arr)
-

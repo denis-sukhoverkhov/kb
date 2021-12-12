@@ -1,12 +1,13 @@
 # https://www.interviewbit.com/problems/length-of-last-word/
 
+
 def length_of_last_word(A):
 
     start_pos = 0
     end_word = False
     end_pos = 0
     for i in range(len(A)):
-        if A[i] == ' ':
+        if A[i] == " ":
             start_word = False
             end_word = True
             end_pos = i

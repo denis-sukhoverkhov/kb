@@ -9,7 +9,7 @@ def numrange(A, B, C):
         tmp_sum += 0
         j = i
         tmp_r = []
-        while tmp_sum <= C and A[i]<C  and j < len(A):
+        while tmp_sum <= C and A[i] < C and j < len(A):
             tmp_sum += A[j]
             tmp_r.append(A[j])
             j += 1

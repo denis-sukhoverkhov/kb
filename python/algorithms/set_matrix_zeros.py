@@ -19,13 +19,8 @@ def set_zeroes(A):
 
 
 if __name__ == "__main__":
-    A = [[1, 0, 1],
-         [1, 1, 1],
-         [1, 1, 1]]
+    A = [[1, 0, 1], [1, 1, 1], [1, 1, 1]]
     print(set_zeroes(A))
 
-    A = [
-        [0, 0],
-        [1, 1]
-    ]
+    A = [[0, 0], [1, 1]]
     print(set_zeroes(A))

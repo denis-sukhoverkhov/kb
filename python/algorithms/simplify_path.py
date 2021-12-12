@@ -10,10 +10,10 @@ class Solution:
         while i < len_a:
             dir_str = ""
 
-            while i < len_a and A[i] == '/':
+            while i < len_a and A[i] == "/":
                 i += 1
 
-            while i < len_a and A[i] != '/':
+            while i < len_a and A[i] != "/":
                 dir_str += A[i]
                 i += 1
 
@@ -34,12 +34,11 @@ class Solution:
         while st1:
             poped = st1.pop()
 
-            if res[-1] != '/':
-                res += '/'
+            if res[-1] != "/":
+                res += "/"
 
-            res+=poped
+            res += poped
         return res
-
 
 
 if __name__ == "__main__":

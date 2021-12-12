@@ -1,7 +1,8 @@
 # https://www.interviewbit.com/problems/amazing-subarrays/
 
+
 def amazing_subarrays(A):
-    vowel = ('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U')
+    vowel = ("a", "e", "i", "o", "u", "A", "E", "I", "O", "U")
 
     ct_amazing_strings = 0
 

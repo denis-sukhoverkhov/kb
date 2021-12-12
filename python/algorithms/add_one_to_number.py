@@ -1,4 +1,3 @@
-
 def add_one_to_number(A):
     number = int("".join([str(i) for i in A]))
 

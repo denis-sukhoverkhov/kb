@@ -1,4 +1,3 @@
-
 # Driver code to test above
 arr = [12, 11, 13, 5, 6]
 
@@ -12,8 +11,8 @@ def insertion_sort(arr):
         while j >= 0 and arr[j] > x:
             arr[j + 1] = arr[j]
             j -= 1
-        arr[j+1] = x
+        arr[j + 1] = x
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     insertion_sort(arr)

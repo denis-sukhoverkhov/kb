@@ -1,5 +1,3 @@
-
-
 class SinglyLinkedListNode:
     def __init__(self, node_data):
         self.data = node_data
@@ -31,7 +29,7 @@ def insertNodeAtHead(llist, data):
     return node
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     llist = SinglyLinkedList()
 

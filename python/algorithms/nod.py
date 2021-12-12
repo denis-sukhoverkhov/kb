@@ -1,5 +1,3 @@
-
-
 def nod(a, b):
     while a != 0 and b != 0:
         if a > b:
@@ -16,7 +14,7 @@ def largest_coprime_divisor(A, B):
     return int(A)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(nod(1234567890, 12))
     print(nod(6, 12))
     print(nod(18, 6))

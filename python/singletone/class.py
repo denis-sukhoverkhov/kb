@@ -1,5 +1,6 @@
 # Singleton/SingletonPattern.py
 
+
 class OnlyOne:
     class __OnlyOne:
         def __init__(self, arg):
@@ -21,11 +22,11 @@ class OnlyOne:
 
 
 if __name__ == "__main__":
-    x = OnlyOne('sausage')
+    x = OnlyOne("sausage")
     print(x.val)
-    y = OnlyOne('eggs')
+    y = OnlyOne("eggs")
     print(y.val)
-    z = OnlyOne('spam')
+    z = OnlyOne("spam")
     print(z)
     print(x)
     print(y)

@@ -1,14 +1,15 @@
 # https://www.interviewbit.com/problems/roman-to-integer/
 
+
 def roman_to_integer(A):
     map = {
-        'X': 10,
-        'I': 1,
-        'V': 5,
-        'L': 50,
-        'C': 100,
-        'D': 500,
-        'M': 1000,
+        "X": 10,
+        "I": 1,
+        "V": 5,
+        "L": 50,
+        "C": 100,
+        "D": 500,
+        "M": 1000,
     }
 
     sum = 0
@@ -49,18 +50,17 @@ if __name__ == "__main__":
     s = "XX"
     print(roman_to_integer(s))
 
-
     s = "MMVI"
     print(roman_to_integer(s))
 
-    s = 'MMXXV'
+    s = "MMXXV"
     print(roman_to_integer(s))
 
-    s = 'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMCMXXXI'
+    s = "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMCMXXXI"
     print(roman_to_integer(s))
 
-    s = 'MMMCCLXXXVII'
+    s = "MMMCCLXXXVII"
     print(roman_to_integer(s))
 
-    s = 'CMVI'
+    s = "CMVI"
     print(roman_to_integer(s))

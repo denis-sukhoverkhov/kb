@@ -1,7 +1,8 @@
 #! /usr/bin/python
 
-import addressbook_pb2
 import sys
+
+import addressbook_pb2
 
 
 # Iterates though all people in the AddressBook and prints info about them.
@@ -9,7 +10,7 @@ def list_people(address_book):
     for person in address_book.people:
         print("Person ID:", person.id)
         print("  Name:", person.name)
-        if person.HasField('email'):
+        if person.HasField("email"):
             print("  E-mail address:", person.email)
 
         for phone_number in person.phones:

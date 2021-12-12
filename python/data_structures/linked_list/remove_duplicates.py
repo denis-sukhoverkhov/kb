@@ -21,7 +21,7 @@ class Solution:
     def display(self, head):
         current = head
         while current:
-            print(current.data, end=' ')
+            print(current.data, end=" ")
             current = current.next
 
     def removeDuplicates(self, head):
@@ -117,7 +117,6 @@ class Solution:
         return 1
 
 
-
 if __name__ == "__main__":
     mylist = Solution()
     head = None
@@ -130,7 +129,7 @@ if __name__ == "__main__":
 
     mylist = Solution()
     head = None
-    lst = ['a', 'b', 'c', 'b', 'a']
+    lst = ["a", "b", "c", "b", "a"]
     for i in range(len(lst)):
         head = mylist.insert(head, lst[i])
     # head = mylist.removeDuplicates(head)
@@ -138,7 +137,7 @@ if __name__ == "__main__":
 
     mylist = Solution()
     head = None
-    lst = ['a', 'b', 'b', 'a']
+    lst = ["a", "b", "b", "a"]
     for i in range(len(lst)):
         head = mylist.insert(head, lst[i])
     # head = mylist.removeDuplicates(head)

@@ -29,7 +29,7 @@ def merge_sort(arr):
             k += 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     arr = [11, 6, 10, 1, 9, 15, 7, 8, 17, 5, 2]
     merge_sort(arr)
 

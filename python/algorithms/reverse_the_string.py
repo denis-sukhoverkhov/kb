@@ -1,12 +1,13 @@
 # https://www.interviewbit.com/problems/reverse-the-string/
 
+
 def reverse_the_string(A: str):
 
-    list_of_words = A.split(' ')
+    list_of_words = A.split(" ")
 
     filtered_words = [i for i in list_of_words if i]
 
-    return ' '.join(filtered_words[::-1])
+    return " ".join(filtered_words[::-1])
 
 
 if __name__ == "__main__":

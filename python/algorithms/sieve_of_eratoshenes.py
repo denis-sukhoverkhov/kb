@@ -21,7 +21,7 @@ def sieve_of_eratosthenes(number: int):
             print(p)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     n = 30
     print("Following are the prime numbers smaller")
     print("than or equal to", n)

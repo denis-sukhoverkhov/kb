@@ -3,6 +3,7 @@
 # @return a bool
 # def isBadVersion(version):
 
+
 class Solution(object):
     def __init__(self, bad_version):
         self.bad_version = bad_version

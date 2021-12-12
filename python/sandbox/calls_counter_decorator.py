@@ -1,15 +1,15 @@
-
 def call_counter(call_limit):
     def decorator(func):
         def helper(calls={}):
             key = func.__name__
             calls[key] = 1 if key not in calls else calls[key] + 1
             if calls[key] > call_limit:
-                raise Exception('exceeding the limit calls')
+                raise Exception("exceeding the limit calls")
 
         def wrapper(*args, **kwargs):
             helper()
             return func(*args, **kwargs)
+
         return wrapper
 
     return decorator

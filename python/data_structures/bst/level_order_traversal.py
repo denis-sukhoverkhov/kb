@@ -27,6 +27,7 @@ class Solution:
             return
         values = []
         from collections import deque
+
         q = deque()
         q.append(root)
         while q:
@@ -36,10 +37,10 @@ class Solution:
                 q.append(temp_node.left)
             if temp_node.right:
                 q.append(temp_node.right)
-        print(*values, sep=' ')
+        print(*values, sep=" ")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     T = int(input())
     myTree = Solution()
     root = None

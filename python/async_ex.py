@@ -20,10 +20,9 @@ async def main():
     # We are using the low-level "loop.create_task()" API here because
     # we already have a reference to the event loop at hand.
     # Otherwise we could have just used "asyncio.create_task()".
-    loop.create_task(
-        set_after(fut, 1, '... world'))
+    loop.create_task(set_after(fut, 1, "... world"))
 
-    print('hello ...')
+    print("hello ...")
 
     # Wait until *fut* has a result (1 second) and print it.
     print(await fut)

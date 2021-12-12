@@ -76,16 +76,16 @@ class LinkedListIterator:
         return tmp
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     llist = LinkedList()
 
     for i in range(100):
-        print(i, end=', ')
+        print(i, end=", ")
         llist.append(i)
 
-    print('\nКонец списка: {}'.format(llist._tail))
-    print('Следующий за head элемент: {}'.format(llist._head.next))
-    print('Следующий за head.next элемент: {}'.format(llist._head.next.next))
+    print("\nКонец списка: {}".format(llist._tail))
+    print("Следующий за head элемент: {}".format(llist._head.next))
+    print("Следующий за head.next элемент: {}".format(llist._head.next.next))
     # ...Отталкиваясь от этого, можно реализовать __next__() для LinkedListIterator'а
 
     # Обратите внимание: здесь будет срабатывать NotImplementedError, пока нет реализации у LinkedListIterator

@@ -2,8 +2,8 @@
 
 
 def compareVersion(A, B):
-    a_dig = [int(i) for i in A.split('.') if i]
-    b_dig = [int(i) for i in B.split('.') if i]
+    a_dig = [int(i) for i in A.split(".") if i]
+    b_dig = [int(i) for i in B.split(".") if i]
 
     max_len = max(len(a_dig), len(b_dig))
     for i in range(max_len):

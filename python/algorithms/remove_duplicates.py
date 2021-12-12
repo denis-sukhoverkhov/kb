@@ -27,7 +27,9 @@ if __name__ == "__main__":
     A = [1, 1, 1, 1, 1, 1, 1]
     assert removeDuplicates(A) == 1
 
-    A = [1, ]
+    A = [
+        1,
+    ]
     assert removeDuplicates(A) == 1
     A = []
     assert removeDuplicates(A) == 0
