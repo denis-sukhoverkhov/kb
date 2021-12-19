@@ -13,12 +13,14 @@ jupyterlab = "^3.2.2"
 aiokafka = "^0.7.2"
 python-dotenv = "^0.19.2"
 PyYAML = "^6.0"
-isort = "^5.10.1"
+pydantic = "^1.8.2"
 
 [tool.poetry.dev-dependencies]
 black = "^21.12b0"
 isort = "^5.10.1"
 mypy = "^0.910"
+pre-commit = "^2.16.0"
+"ruamel.yaml" = "^0.17.17"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -28,18 +30,16 @@ build-backend = "poetry.core.masonry.api"
 line-length = 120
 target-version = ['py36', 'py37', 'py38']
 include = '\.pyi?$'
-exclude = '''
-/(
-  \.toml
-  |\.sh
-  |\.git
-  |\.ini
-  |Dockerfile
-  |\.ipynb_checkpoints
-  |venv
-  |\.env
-)/
-'''
+exclude = [
+  '.toml',
+  '.sh',
+  '.git',
+  '.ini',
+  'Dockerfile',
+  '.ipynb_checkpoints',
+  'venv',
+  '.env',
+]
 
 [tool.isort]
 line_length = 120
@@ -56,6 +56,4 @@ warn_return_any = true
 warn_redundant_casts = true
 warn_unused_configs = true
 ignore_missing_imports = true
-plugins = [
-  "pydantic.mypy"
-]
+plugins = "pydantic.mypy"
