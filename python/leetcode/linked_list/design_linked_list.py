@@ -59,11 +59,6 @@ if __name__ == "__main__":
     myLinkedList.addAtHead(1)
     myLinkedList.addAtTail(3)
     myLinkedList.addAtIndex(3, 2)
-    # assert myLinkedList.get(1) == 2
-    # myLinkedList.deleteAtIndex(1)
-    # assert myLinkedList.get(1) == 3
-    # assert myLinkedList.get(3) == -1
-    # myLinkedList.deleteAtIndex(3)
 
     myLinkedList = MyLinkedList()
     myLinkedList.addAtHead(1)
