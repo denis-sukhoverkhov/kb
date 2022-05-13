@@ -10,7 +10,7 @@ class TreeNode:
 
     @classmethod
     def array_to_tree(cls, lst):
-        root = TreeNode(lst[0])
+        root = cls(lst[0])
         q = collections.deque()
         q.append(root)
 
@@ -21,13 +21,13 @@ class TreeNode:
 
             if idx < len(lst):
                 if lst[idx] is not None:
-                    node.left = TreeNode(lst[idx])
+                    node.left = cls(lst[idx])
                     q.append(node.left)
                 idx += 1
 
             if idx < len(lst):
                 if lst[idx] is not None:
-                    node.right = TreeNode(lst[idx])
+                    node.right = cls(lst[idx])
                     q.append(node.right)
                 idx += 1
 
@@ -52,3 +52,9 @@ class TreeNode:
             res.pop()
 
         return res
+
+
+class Node(TreeNode):
+    def __init__(self, val=0, left=None, right=None, next=None):
+        self.next = next
+        super().__init__(val=val, left=left, right=right)
