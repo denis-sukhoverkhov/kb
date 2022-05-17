@@ -9,7 +9,7 @@ class TreeNode:
         self.right = right
 
     @classmethod
-    def array_to_tree(cls, lst):
+    def array_to_tree(cls, lst) -> 'TreeNode':
         root = cls(lst[0])
         q = collections.deque()
         q.append(root)
