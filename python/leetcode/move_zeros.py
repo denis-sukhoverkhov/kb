@@ -28,13 +28,13 @@ class Solution:
 if __name__ == "__main__":
     obj = Solution()
 
-    nums = [2, 1]
-    obj.moveZeroes(nums)
-    assert nums == [2, 1]
-
     nums = [0, 1, 0, 3, 12]
     obj.moveZeroes(nums)
     assert nums == [1, 3, 12, 0, 0]
+
+    nums = [2, 1]
+    obj.moveZeroes(nums)
+    assert nums == [2, 1]
 
     nums = [1, 2, 0, 3]
     obj.moveZeroes(nums)

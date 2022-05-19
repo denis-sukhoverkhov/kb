@@ -27,6 +27,7 @@ class TreeNode:
 
         return result
 
+
 class Solution:
     def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
 
