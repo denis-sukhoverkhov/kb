@@ -1,5 +1,5 @@
 from typing import Optional
-from python.leetcode.linked_list.common import ListNode
+from python.leetcode.libs.linked_list import ListNode
 
 
 class Solution:
