@@ -17,12 +17,26 @@ class Solution:
 
 
 if __name__ == "__main__":
-    obj = Solution()
+    k = 3
+    nums = [1, 2, 3, 4, 5, 6, 7]
+    k %= len(nums)
+    res = nums[len(nums)-k:] + nums[:len(nums)-k]
+    print(res)
 
-    s = "catsandog"
-    wordDict = ["cats", "dog", "sand", "and", "cat"]
-    assert obj.wordBreak(s, wordDict) is False
+    a = 0
+    def foo():
+        global a
 
-    s = "leetcode"
-    wordDict = ["leet", "code"]
-    assert obj.wordBreak(s, wordDict) is True
+        a += 1
+        return a
+
+    print(foo())
+    # obj = Solution()
+    #
+    # s = "catsandog"
+    # wordDict = ["cats", "dog", "sand", "and", "cat"]
+    # assert obj.wordBreak(s, wordDict) is False
+    #
+    # s = "leetcode"
+    # wordDict = ["leet", "code"]
+    # assert obj.wordBreak(s, wordDict) is True
