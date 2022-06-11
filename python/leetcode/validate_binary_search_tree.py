@@ -22,6 +22,9 @@ class Solution:
 if __name__ == "__main__":
     obj = Solution()
 
+    head = TreeNode(5, left=TreeNode(3, left=TreeNode(2), right=TreeNode(6)))
+    assert obj.isValidBST(head) is False
+
     head = TreeNode(2, left=TreeNode(1), right=TreeNode(3))
     assert obj.isValidBST(head) is True
 
