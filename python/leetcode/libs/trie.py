@@ -37,6 +37,6 @@ class TrieNode:
             else:
                 node_to_insert.childs[ch].values.add(idx)
 
-            if cache:
+            if cache is not None:
                 cache[word[:i+1]] = current.childs[ch]
             current = current.childs[ch]
