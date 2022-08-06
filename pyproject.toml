@@ -8,7 +8,7 @@ authors = ["Denis Sukhoverkhov <denis.sukhoverkhov@yandex.ru>"]
 python = "^3.10"
 locust = "^2.4.1"
 aiocache = {extras = ["redis"], version = "^0.11.1"}
-sanic = "^21.9.1"
+sanic = "^21.12.2"
 jupyterlab = "^3.2.2"
 aiokafka = "^0.7.2"
 python-dotenv = "^0.19.2"
