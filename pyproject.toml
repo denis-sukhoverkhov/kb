@@ -5,19 +5,16 @@ description = "knowledge base"
 authors = ["Denis Sukhoverkhov <denis.sukhoverkhov@yandex.ru>"]
 
 [tool.poetry.dependencies]
-python = "^3.10"
-locust = "^2.4.1"
-aiocache = {extras = ["redis"], version = "^0.11.1"}
-sanic = "^21.9.1"
+python = "^3.12"
+locust = "~2.4"
 jupyterlab = "^3.2.2"
-aiokafka = "^0.7.2"
-python-dotenv = "^0.19.2"
-PyYAML = "^6.0"
-pydantic = "^1.8.2"
+python-dotenv = "~0.19"
+PyYAML = "~6.0"
+pydantic = "~2.0"
 
 [tool.poetry.dev-dependencies]
 black = "^21.12b0"
-isort = "^5.10.1"
+isort = "[5.10"
 mypy = "^0.910"
 "ruamel.yaml" = "^0.17.17"
 
@@ -44,13 +41,20 @@ exclude = [
 line_length = 120
 multi_line_output = 3
 include_trailing_comma = true
-indent='    '
-sections = ['FUTURE','STDLIB','THIRDPARTY','FIRSTPARTY','LOCALPROJECT','LOCALFOLDER']
+indent = '    '
+sections = [
+  'FUTURE',
+  'STDLIB',
+  'THIRDPARTY',
+  'FIRSTPARTY',
+  'LOCALPROJECT',
+  'LOCALFOLDER',
+]
 default_section = 'THIRDPARTY'
 known_standard_library = []
 
 [tool.mypy]
-python_version = 3.8
+python_version = "3.12"
 warn_return_any = true
 warn_redundant_casts = true
 warn_unused_configs = true
