@@ -2,7 +2,9 @@ from typing import List
 
 
 class Solution:
-    def maximumBags(self, capacity: List[int], rocks: List[int], additionalRocks: int) -> int:
+    def maximumBags(
+        self, capacity: List[int], rocks: List[int], additionalRocks: int
+    ) -> int:
         diff = []
 
         for i in range(len(capacity)):
@@ -19,7 +21,7 @@ class Solution:
                 if tmp >= 0:
                     additionalRocks -= diff[i]
                     diff[i] = 0
-                    res+=1
+                    res += 1
                 else:
                     break
 
